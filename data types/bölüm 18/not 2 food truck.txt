@@ -1,0 +1,66 @@
+
+json.set truck:1 . '{"name":"Amazing Delights"}'
+
+json.set truck:1 .is_open 'true'
+
+json.set truck:1 .wait_time 10
+
+json.get truck:1
+
+json.set truck:1 .location '"123 Broadway"'
+
+json.get truck:1
+
+json.set truck:1 .menu '[{"item":"taco","price": 6},{"item":"burito","price":8},{"item":"Chicken Burger","price":10}]'
+
+json.get truck:1
+
+json.get truck:1 .menu
+
+json.get truck:1 .menu[0]
+
+json.get truck:1 .menu[1]
+
+json.get truck:1 .menu[2]
+
+json.get truck:1 .menu[-1]
+
+json.get truck:1 .menu[0]
+
+json.objlen truck:1 .menu
+
+json.objlen truck:1
+json.type truck:1
+json.type truck:1 .menu
+json.objlen truck:1 .menu
+
+json.arrlen truck:1 .menu
+
+json.arrappend truck:1 .menu '{"item":"Lamb Chops", "price":12}'
+
+json.get truck:1
+
+json.numincrby truck:1 .wait_time 10
+
+json.set truck:1 .special_menu false
+
+json.del truck:1 .special_menu
+
+json.arrpop truck:1 .menu 1
+
+json.arrinsert truck:1 .menu 0 '{"item": "Sushi", "price": 4}'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+Redis Protocol
+Redis clients communicate with the Redis server using a protocol called RESP
+> Redis istemciler Redis server ile haberleşmek için RESP denen bir protokol kullanır.
+(REdis Serialization Protocol).
+> imlemente etmesi kolay
+> parse etmek için hızlı
+> kolay okunabilir.
+
+> RESP integer string array gibi bir çok farklı veri tipine serialize edilebilir.
+
+•RESP binary-safe'dir.
+
+
+Redis Protocol-Özellikleri
+  Request–Response Model
+
+Client
+komutları redis sunucusuna bulk stringlerden oluşan arrayler halinde gönderir.
+
+Server
+komut uygulamasına göre RESP türlerinden biriyle yanıt verir.
+
+
+
+Redis Protocol
+
+RESP'de, bazı verilerin türü ilk bayta bağlıdır.
+> Basit stringler için yanıtın ilk baytı "+" dır.
+> Hatalar için yanıtın ilk baytı "-"
+> integers için yanıtın ilk baytı ":" şeklindedir.
+> Bulk stringler için yanıtın ilk baytı "$" dır.

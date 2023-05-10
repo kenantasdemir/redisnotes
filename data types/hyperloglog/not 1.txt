@@ -1,0 +1,18 @@
+HyperLogLog
+•AHyperLogLog isaprobabilistic data structure
+•Used in order to count unique things (technically this is referred
+to estimating the cardinality ofaset).
+•Encoded as a sRedis string
+•Conceptually the HLL (HyperLogLog) is like using Sets to do the
+same task.
+•They are not one hundred percent accurate
+•By using HyperLogLogs we can saveatremendous amount of
+memory.
+
+HyperLogLog
+•Allows you to maintain counts of millions of items with extreme
+efficiency
+•Three commands
+•PFADD
+•PFCOUNT
+•PFMERGE

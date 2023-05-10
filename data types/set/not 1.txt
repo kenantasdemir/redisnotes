@@ -1,0 +1,11 @@
+Redis-Sets
+Aset isalist of Strings which are
+•UN-ORDERED
+•and UNIQUE
+•Provides standard mathematical operations like
+•Intersection
+•Difference
+•Union
+•Can be used to check the existence of members
+•Max# of elements inaset is around4billions
+                                    

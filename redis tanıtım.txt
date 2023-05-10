@@ -1,0 +1,65 @@
+
+Redis
+Remote Dictionary Service kelimelerinin kısaltmasıdır
+• C ile yazılmıştır
+• Çıkış noktası Hız
+• Key:value şeklinde tasarlanmış bir NoSQL türünde Veri tabanıdır
+• In Memory Database yaklaşımı (Disk üzerine yazılabilme özelliği de opsiyonel)
+• Redis gelişmiş bir key-value deposudur.
+
+Rediste temel veri yapıları
+
+String
+Hash
+List
+Set
+Sorted Set
+Geospatial index
+HyperLogLog
+
+
+
+Database (Redis sakladığı veriyi disk üzerine de yazabilir (Persist))
+Caching Layer (Redis çok hızlıdır)
+Message Broker (Redis sadece key-value store olarak çalışmaz. RabbitMQ gibi kullanılabilir)
+
+
+
+Redis Ne Değildir?
+Relational Database ya da Document bazlı Database Sistemlerinin bir alternatifi değildir
+Aksine bu DB türlerinin ilişkilerini tanımlayacak katman olarak kullanılabilir
+En iyi kullanım alanı ise; ön görülebilir DB boyutuyla hızla büyüyen veriler.
+
+
+Use Cases
+
+• Cache Mekanizmalarında
+• Pub/Sub
+• Kuyrukların engellenmesi ve geciktirilmesinde
+• Kısa Canlı verilerde
+• Fraud detection (Dolandırıcılık tespitlerinde) 
+• Oturum kontrollerinde
+• Filtreleme Servislerinde
+• Yorum sayımlarında
+• Gerçek verilerin analizlerinde
+• Her defasında unique bir verinin saklanmasında
+
+
+
+Ne zaman Redis Kullanmalıyız?
+• Çok yüksek hıza ihtiyaç duyulduğunda
+• Key-value çiftinden daha fazlası ihtiyacınız olduğunda
+• Dataset'in kritik olmadığı yerlerde
+
+
+
+
+
+
+
+
+
+
+
+
+

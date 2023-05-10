@@ -1,0 +1,19 @@
+Unsubscribe from a channel or channels
+UNSUBSCRIBE Channel Name
+
+> unsubscribe
+//bütün kanallardan çıkar
+
+
+> unsubscribe news1
+//news1 adlı kanaldan unsubscribe olur
+
+
+
+> punsubscribe news*
+//news ilebaşlayan tüm kanallardan unsubscribe olur.
+
+
+> Eğer pattern belirtmediyseniz client abone olduğu tüm kanallardan ayrılacaktır.
+> Redis sunucusu, o desen için abonelikten çıkılan her kanalda bir mesaj gönderir. 
+> Bu mesaj, istemciye desene abonelikten çıkıldığı bilgisini verir.

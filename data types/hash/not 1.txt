@@ -1,0 +1,21 @@
+Redis Hashes
+•Hash veri tipi key value çiftinden oluşur.
+•field1: value1, field2:value2, field3:value3
+•JSON objelerine benzerdikr
+•hash içindeki veriler string olmalıdır.
+•Hash veri türü şemasızdır
+•hash veri türü içinde 4 milyar element barındırabilir.
+
+
+Redis Hashes–Use Cases
+obje özelliklerini saklamada kullanılır.
+•User Information
+	•İsim
+	•Lokasyon
+
+
+Schemaless situations
+
+•We use hashes where we do not have a uniform data structure or
+fixed fields values. i.e. with hash you can create any field value without
+worrying about schema e.g. "user_not_to_called": "Y"

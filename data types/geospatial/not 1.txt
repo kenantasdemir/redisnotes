@@ -1,0 +1,20 @@
+geoadd sehirler 28.9784 41.0082 istanbul
+//sehirler isimli veri yapısına boylam, enlem ve sehir bilgisini ekler
+
+geoadd sehirler 28.9784 41.0082 istanbul 32.8594 39.9334 ankara
+//coklu bir sekilde eleman eklenmek istenirse boylam enlem ve sehir bilgisi eklenmelidir.
+
+geopost sehirler istanbul ankara
+//istanbul ve ankara sehirlerinin boylam ve enlem değerlerini verir.
+
+geohash sehirler istanbul ankara
+//istanbul ve ankara şehirlerinin geohash bilgilerini verir.
+
+geodist sehirler istanbul ankara
+//sehirler veri yapısı içindeki istanbul ve ankara sehirlerinin arasındaki mesafeyi verir.
+//uzaklık birimi default olarak metredir
+
+geodist sehirler istanbul ankara km
+//iki sehir arasındaki uzaklığı km biriminden verir.
+
+

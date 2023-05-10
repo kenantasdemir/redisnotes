@@ -1,0 +1,43 @@
+set country:ZM "Zambia"
+set country:YE "Yemen"
+
+get country:ZM
+get country:YE
+
+keys *
+
+flushdb
+//veritabanındaki tüm key-value çiftlerini siler.
+
+clear
+
+awk -F ',' '{print $1}' country_codes.csv
+//country_codes.csv dosyasının ilk elemanını döner
+//ilk değer anahtarı temsil eder
+
+awk -F ',' '{print "SET country:"$1 " " $2}' country_codes.csv
+// ","ayracını kullanarak her satırı parçalara böler
+//csv dosyasından anahtarları ve değerleri karşılıklı olarak çeker ve set komutuyla yeni redis key-value çifti oluşturur
+
+
+
+awk -F ',' '{print "SET country:"$1 " " $2}' country_codes.csv > country_codes_redis.csv
+// ","ayracını kullanarak her satırı parçalara böler
+//Sonra her satır için "SET country:[ülke kodu] [ülke adı]" formatında bir metin oluşturur ve "country_codes_redis.csv" adlı bir dosyaya yazar.
+
+cat country_codes_redis.csv | redis-cli
+//country_codes_redis.csv dosya içeriğini redis-cli arabirimine sağlar
+
+cat country_codes_redis.csv | redis-cli --pipe
+//country_codes_redis.csv adlı dosyayı redis-cli'a gönderir
+//--pipe komutu hızlı bir şekilde çoklu şekilde veri yükleme yapmak için kullanılır
+
+get country:SG
+
+awk -F ',' '{print "SET stock:"$1 " " $2}' stock_prices.csv
+awk -F ',' '{print "SET stock:"$1 " " $2}' stock_prices.csv > stock_prices_redis.csv
+
+cat stock_prices_redis.csv | redis-cli --pipe
+
+dbsize 
+//Redis veritabanında kaydedilmiş olan anahtarların sayısını döndürür.

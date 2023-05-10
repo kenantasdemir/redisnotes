@@ -1,0 +1,9 @@
+Publish/Subscribe
+•Allows to create simple message buses
+•Its allows to
+•PUBLISH messages to channels
+•and SUBSCRIBE to messages from channels
+•It's fire and forget messages
+•Redis acts asa'central broker' for multiple clients providing
+•Simple method to post messages
+and consume messages

@@ -1,0 +1,6 @@
+Use Cases - Sorted Sets
+You can call sorted sets a superset version of sets as it carries all the features of sets, only that sets have no order while sorted sets associate every member with a numeric score.
+
+Multiplayer Gaming: On an online gaming applications which required to update multiple games scores list and frequently load top score performers.
+
+Questions and Answers / Community forums: Redis.io website uses Sorted Sets to handle to rank the highest voted answers for each question. In addition stack overflow uses a similar setup for their Q&A setups.

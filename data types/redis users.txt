@@ -1,0 +1,19 @@
+Kullanıcı yönetimini etkinleştirmek için 
+user default ont nopass komutu girilmelidir.
+
+ACL CAT slow --> slow kategorisinde bulunan komutları listeler.
+ACL DELUSER johndoe --> johndoe isimli kullanıcıyı siler.
+ACL list --> mevcut kullanıcıları listeler.
+ACL USERS --> mevcut kullanıcıları listeler.
+ACL whoami --> oturum açmış kullanıcıyı döndürür.
+ACL setuser username password  --> bir kullanıcı oluşturur ve şifre atar
+ACL setuser username nopass --> parolası olmayan bir kullanıcı oluşturur.
+ACL setuser username on --> kullanıcıyı aktif hale getirir.
+ACL setuser username off --> kullanıcıyı pasif hale getirir.
+ACL deluser username --> bir kullanıcıyı siler.
+ACL GENPASS 32 --> 32 karakterlik bir şifre oluşturur.
+
+
+config set requirepass pass12345 komutu, Redis veritabanı sunucusuna bir yönetici şifresi atar. 
+auth default nopass
+auth default pass12345

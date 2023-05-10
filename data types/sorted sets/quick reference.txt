@@ -1,0 +1,36 @@
+Quick Reference - Sorted Sets
+Sorted sets are a data type which is similar to a mix between a Set and a Hash
+
+Sorted sets are implemented via a dual-ported data structure containing both a skip list and a hash table
+
+Adding elements and retrieving sorted elements is extremely fast.
+
+Like Hashes, sorted sets store multiple fields called members, and their numerical values called scores
+
+All the members are always unique
+
+They are ordered based on their scores
+
+ZADD, ZINCRBY
+
+Add one or more members or update score, Increment the score of a member, Remove one or more members
+
+ZCARD, ZCOUNT, ZSCORE, ZRANK
+
+Get number of members, Count members within sort key (score) range, Get the score associated with the given member, Determine the index of a member
+
+ZRANGE, ZRANGEBYLEX, ZRANGEBYSCORE, ZLEXCOUNT
+
+Get members sorted by sort key (score), Return a range of members by lexicographical range, Return a range of members by score, Count the number of members between a given lexicographical range
+
+ZREM, ZREMRANGEBYLEX, ZREMRANGEBYRANK, ZREMRANGEBYSCORE
+
+Remove one or more members, Remove all members between the given lexicographical range, Remove all members within the given indexes, Remove all members within the given scores
+
+ZREVRANGE, ZREVRANGEBYSCORE, ZREVRANK, ZREVRANGEBYLEX
+
+Return a range of members by index with scores ordered from high to low, Return a range of members by score, with scores ordered from high to low, Determine the index of a member with scores ordered from high to low, Return a range of members by lexicographical range, ordered from higher to lower strings
+
+ZINTERSTORE, ZUNIONSTORE
+
+Get keys that exist in all sets only and store the resulting sorted set in a new key, Add multiple sorted sets and store the resulting sorted set in a new key

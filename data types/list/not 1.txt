@@ -1,0 +1,23 @@
+•Listeler çok esnek veri yapılarıdır.
+•A list acts asaSIMPLE COLLECTION of elements
+  •1,2,3,4,5,6.
+•List stores sequence of objects
+•A list isasequence of ordered elements
+•The order of the elements depends on the elements insertion sequence
+•A list can be encoded and memory optimized
+•A list is like an array-from programming perspective
+•Element inalist
+  •are strings
+•A list can contains>4billion elements
+ordered collection of items
+javadaki linked listelere benzer
+Queue/Stack olarak kullanılabilir
+
+Message Queue olarak kullanılabilir
+
+Event Queue
+Lists are used in many tools like
+   •Resque, Celery, Logstash
+
+Most recent•Twitter does this by storing the latest tweets ofauser inalist
+data

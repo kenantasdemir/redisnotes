@@ -1,0 +1,59 @@
+redis-server
+
+redis-cli
+shutdown nosave
+info
+info memory
+info stats
+info replication
+info cpu
+info cluster
+
+info keyspace
+
+ping
+ping "hello"
+
+quit
+
+set key value
+get key
+
+set name "Kenan"
+get name
+
+del name
+
+set key1 value1
+set key2 value2
+set key3 value3
+
+randomkey
+//rastgele olarak bir key döner.
+
+del key1 key2 key3
+
+exists key1
+exists key1 key2 key3
+
+set 1 hello ex 120
+ttl 1
+
+expire 1 10
+
+set 1 hello px 100000
+pttl 1
+
+expire 1 10
+ttl 1
+
+set 1 hello px 1000000
+pttl 1
+
+pexpire 1 100
+
+
+
+set 1 hello ex 120
+persist 1
+ttl 1

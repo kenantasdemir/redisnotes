@@ -1,0 +1,33 @@
+h?llo matches hello, hallo and hxllo
+h*llo matches hllo and heeeello
+
+h[ae]llo matches hello and hallo, but not hillo
+h[^e]llo matches hallo,hbllo,... but not hello
+
+h[a-b]llo matches hallo and hbllo
+
+set hello 1
+set hallo 2
+set hrllo 3
+set heello 4
+set hijllo 5
+
+keys *
+keys *ll*
+
+keys *e*
+keys h?llo
+keys h*llo
+keys h[ae]llo
+keys h[x]llo
+keys h[ee]llo
+keys h[e]llo
+keys h[a-z]llo
+
+keys h[^a]llo
+keys *
+
+keys user:*
+keys user:???
+keys user:*:group
+keys user:???:group

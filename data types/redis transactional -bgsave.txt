@@ -1,0 +1,11 @@
+multi
+decr user:1:balance
+exec
+discard
+
+watch user:1:balance user:2:balance
+
+
+------Saving Data On Disk-------
+bgsave
+//diskte veri kaydeder.

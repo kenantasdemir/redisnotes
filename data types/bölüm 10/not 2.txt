@@ -1,0 +1,41 @@
+On Publishing side
+
+publish news:tech "tech"
+//news:tech isimli kanala "tech" mesajı yayınlandı.
+
+publish news:biz "biz"
+
+publish news:tech "tech"
+
+publish news:tech "tech"
+
+publish news:politics "pol"
+
+publish news:biz "biz"
+
+publish topnews "top"
+
+publish topnews "top"
+
+
+
+On Subscriber side
+
+subscribe news:tech news:biz
+//news:tech ve news:biz adlı kanallara abone olundu
+
+ctrl + c
+//abonelikten çıkmak için bu komut kullanılabilir.
+
+psubscribe news:*
+//news: ile başlayan bütün kanallara abone olur.
+
+
+ctrl + c
+
+psubscribe news:* tech:*
+//news:* ve tech: ile başlayan bütün kanallara abone olundu.
+
+ctrl + c
+
+psubscribe news:* top*

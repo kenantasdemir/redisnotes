@@ -1,0 +1,14 @@
+Use Cases - HyperLogLog
+To get unique data usually you need more memory, since bigger the input data, more are the chances of getting a stable output. HyperLogLog is good at this since you get great performance at low computation cost, and a small amount of memory. HyperLogLog can be used in various situations like;
+
+Counting unique visitors
+
+Creating unique in a book or books
+
+Keeping best stocks of all times
+
+Create unique names of a products, services, category
+
+A situation where you are not worries about the elements of the datasets, but its counts
+
+Create unique names of students in a class and many more.

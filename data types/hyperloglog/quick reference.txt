@@ -1,0 +1,20 @@
+Quick Reference - HyperLogLog
+A HyperLogLog is a probabilistic data structure
+
+Used in order to count unique things (technically this is referred to estimating the cardinality of a set).
+
+Encoded as a Redis string
+
+Conceptually the HLL (HyperLogLog) is like using Sets to do the same task.
+
+They are not one hundred percent accurate
+
+By using HyperLogLogs we can save a tremendous amount of memory.
+
+PFADD, PFCOUNT
+
+Append one or more elements, count number of elements
+
+PFMERGE
+
+Merge elements from multiple keys

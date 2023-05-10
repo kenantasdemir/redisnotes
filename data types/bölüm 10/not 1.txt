@@ -1,0 +1,15 @@
+subscribe ch1
+//ch1 isimli kanal oluşturuldu ve subscribe olundu.
+
+publish ch1 msg1
+//ch1 isimli kanala msg1 isimli mesaj yayınlandı.
+
+publish ch1 msg2
+
+publish ch1 msg3
+
+publish ch1 msg4
+
+
+o telnet 6379
+//Redis sunucusuna TCP/IP bağlantısı kurarak Redis komutları yazabileceğiniz bir terminal arayüzü sağlar.

@@ -1,0 +1,25 @@
+When this is required, Sorted Sets are a better option
+
+LPUSH, RPUSH
+
+Add Value at beginning, Add value at the end
+
+LPUSHX, RPUSHX
+
+Only push if key already exists
+
+LLEN, LRANGE
+
+Get number of values, Get values from Start to Stop
+
+LINDEX, LSET, LINSERT
+
+Get a value by index, Set a value by index, Add a value before or after another
+
+LREM, LTRIM
+
+Delete element from list, Trim list by range
+
+LPOP, RPOP
+
+Delete and Get the first element, Delete and Get the last element

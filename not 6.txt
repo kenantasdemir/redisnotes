@@ -1,0 +1,22 @@
+set k1 v1
+set k2 v2
+
+del k1 k2
+
+set k1 v1
+set k2 v2
+
+unlink k1 k2
+
+##########################################################3
+
+
+set name="Joe"
+get name
+type name
+
+lpush k1 "value"
+type k1
+
+sadd k2 "value"
+type k2

@@ -1,0 +1,15 @@
+Sorted Sets
+A mix between a Set and Hash
+•Are implemented via a dual-ported data structure containing both
+a skip list and a hash table
+Adding elements and retrieving sorted elements is extremely fast.
+Like Hashes, sorted sets store
+ multiple fields called members, and
+•their numerical values called scores
+All the members are always unique, non-repeating strings
+They are ordered based on their scores
+
+Sorted sets are used to store data that needs to be ranked, such as
+leadership and more.
+Likeahashasingle key stores multiple members.
+The score of each member isanumber

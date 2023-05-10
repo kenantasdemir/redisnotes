@@ -1,0 +1,26 @@
+Quick Reference - Sets
+Redis Sets are unordered collections of strings.
+
+They cannot have duplicate values
+
+Sets are good for expressing relations between objects
+
+SADD, SMOVE, SREM, SPOP
+
+Add one or more members, Move a member from one set to another, Remove one or more members, Remove and return one or multiple random members
+
+SCARD, SMEMBERS, SISMEMBER, SRANDMEMBER
+
+Get number of members, Get all members, Test if member exists, Get one or more random members
+
+SUNION, SUNIONSTORE
+
+Get all keys from all sets, no duplicates, same operation but store results in a new key
+
+SINTER, SINTERSTORE
+
+Get keys that exist in all sets only, same operation but store results in a new key
+
+SDIFF, SDIFFSTORE
+
+Return keys from the first set that are not in the subsequent sets, same operation but store results in a new key

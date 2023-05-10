@@ -1,0 +1,8 @@
+Use Cases - Lists
+Lists contain strings that are sorted by their insertion order. With Redis Lists, you can add items to the head or tail of the lists, which is very useful for queueing jobs. Some of use cases for the list may be;
+
+Social Networking Sites: Social platforms like Twitter use Redis Lists to populate their timelines or homepage feeds, and can customize the top of their feeds with trending tweets or stories.
+
+RSS Feeds: We can create news feeds from custom sources where you can pull the latest updates and allow interested followers to subscribe to their favorite RSS feed.
+
+Leaderboards: This is more of high use cases where Forums like Reddit and other voting platforms utilize Redis Lists to add articles to the leaderboard and even sort them by most viewed and voted entries.

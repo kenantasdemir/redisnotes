@@ -1,0 +1,8 @@
+info
+info all
+info everything
+
+role
+
+master sunucu hem okuma hem de yazma iznine sahiptir
+slave ise sadece okuma iznine sahiptir.

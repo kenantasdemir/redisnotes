@@ -1,0 +1,105 @@
+Redis kümesi = birden çok ana parçayı barındırır.
+Veriler birden çok Redis Düğümünde otomatik olarak paylaşılır
+Veri kümelerini birden çok düğüm arasında otomatik olarak böler
+düğümlerin bir alt kümesi arızalarla karşılaştığında işlemlere devam eder;
+Bölümler sırasında bir dereceye kadar kullanılabilirlik.
+
+
+Çoklu kullanılabilirlik
+veriler, master'larda 16KB'LIK bucketlar halinde gruplandırılır
+Ölçeklenebilirlik 1000 düğüme kadar.
+birden fazla master düğüme izin verir.
+
+master notların çoğunluğu durursa cluster durur.
+
+veri paylaşımı anahtar etiketlere dayanmaktadır
+bir kümedeki her ana düğüm, 16384 karma yuvasının bir alt kümesini işler
+bir redis kümesindeki her düğüm, karma yuvalarının bir alt kümesinden sorumludur
+
+
+birden fazla redis instance üzerinde veri depolamanın yolu redis clusterdır. (multiple redis shards)
+
+redis çoklu veritabanı desteklemez.
+
+
+redis-cli --cluster create 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 127.0.0.1:7006 --cluster-replicas 1
+//bir cluster oluşturulur.
+//bu clustera ait ana ve yedek bağlantı düğümleri yukarı IP adresi olarak belirlenmiştir.
+//--cluster-replicas 1 parametresi her bir düğümün sadece 1 replikası olacağını belirtir.
+
+
+
+redis-cli -p 7001
+quit
+
+
+redis-cli -c -p 7004
+//"-c" parametresi sayesinde, Redis sunucusu kümesi modunda çalışıyorsa Redis komutlarının küme içindeki 
+// düğümler arasında otomatik olarak yönlendirilmesini sağlar.
+quit
+
+
+redis-cli -c -p 7005
+role
+//redis sunucusunun rolü ve yük dağlımı hakkında bilgi verir.
+quit
+
+
+redis-cli -c -p 7001
+set k1 v1
+set name Redis
+keys *
+info
+set k1 v1
+quit
+
+
+redis-cli -c -p 7001
+keys *
+quit
+
+
+redis-cli -c -p 7004
+get name
+set foo bar
+quit
+
+
+redis-cli -c -p 7006
+role
+keys *
+set k2 v2
+get k2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cluster key-hash ile çalışır
+

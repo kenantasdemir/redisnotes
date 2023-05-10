@@ -1,0 +1,13 @@
+default olarak keyspace event notifications disabled. çünkü bu özellik CPU'nun işlem gücünü kullanır.
+
+Redis'te "config set notify-keyspace-events AKE" komutu, 
+Redis olaylarına abone olmak isteyen istemcilerin belirli olay türlerini dinlemesine izin verir. 
+"AKE" parametresi, key events (anahtar olayları) türündeki olayların dinlenmesini sağlar. 
+Anahtar olayları, Redis veri tipi işlemlerinde (örneğin SET, GET, DEL) belirli anahtarlarla ilişkili işlemler olduğunda tetiklenir.
+
+Bu ayar yapılandırıldığında, anahtar olayları gerçekleştiğinde Redis bir mesaj yayınlar.
+ Bu mesajı almak için, Redis publish/subscribe mekanizmasını kullanarak abonelik oluşturabilirsiniz. 
+Abonelik oluşturulduktan sonra, anahtar olayları gerçekleştiğinde Redis mesajını yayınlar ve istemci bu mesajı alır. 
+Bu, özellikle veri değişikliklerini takip etmek veya Redis veritabanı üzerinde yürütülen işlemleri izlemek için kullanışlıdır.
+
+config set notify-keyspace-events AKE komutu keyspace event notifications özelliğini enabled haline getirir.

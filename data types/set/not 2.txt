@@ -1,0 +1,205 @@
+sadd cars toyota maserati ford
+//cars isimli bir set oluşturur ve içine toyota maserati v ford elemanlarını ekler
+
+sadd cars mazda
+
+smembers cars
+//cars isimli set verisin elemanlarını listeler.
+
+sadd names Rob Robby Rim John
+smembers names
+
+sadd numbers 1 2 3 4 5 6
+smembers numbers
+
+**********************************************************************
+
+scard cars
+smembers cars
+
+scard numbers
+smembers numbers
+
+sadd unique_ips 1.1.1.0
+smembers unique_ips
+
+sadd amazon:unique_categories electronics computers
+smembers amazon:unique_categories
+
+sadd amazon:unique_categories handmade gardening outdoor sports
+smembers amazon:unique_categories
+
+sadd twitter:hashtags help money training coding database
+smembers twitter:hashtags
+
+
+**********************************************************************
+
+sadd subjects math
+smembers subjects
+sadd subjects english science physics
+smembers subjects
+
+sadd subjects bingo
+semembers subjects
+
+srem subjects bingo
+//subjects isimli set veri yapısının içinden bingo isimli elemanı siler
+
+spop subjects
+//random eleman siler
+
+spop subjects 2 
+//set içinden 2 random eleman siler
+
+
+**********************************************************************
+
+
+smembers cars
+sismember cars ford
+//cars içinde ford isimli bir eleman var mı yok mu kontrol eder varsa true yoksa false döner
+
+sismember cars FORD
+//case-sensitive
+
+sadd subjects math ai english
+sismember subjects english
+sismember subjects ai
+
+smembers subjects
+
+smismember subjects math ai technology
+//math ai ve technology elemanllarının subjects isimli kümede bulunup bulunmadığını kontrol eder
+//sismember komutundan farkı birden fazla elemanı tek seferde kontrol etmemize imkan tanımasıdır.
+
+,
+*********************************************************************
+
+sadd unique_lottery_num 10 20 30 40 50
+smembers unique_lottery_num
+
+srandmember unique_lottery_num
+
+srandmember unique_lottery_num 2
+//unique_lottery isimli kümeden rastgele 2 eleman getirir.
+
+*********************************************************************
+
+sadd num:odd 1 3 5 7 9
+sadd num:even 2 4 6 8 10
+
+smembers num:odd
+smembers num:even
+
+smove num:odd num:even 1
+smove num:odd num:even 3
+
+smove num:odd num:even 5
+//num:odd kümesindeki elemanı num:even kümesine taşır
+//bu kullanımda 5 sayısı num:odd kümesi içindedir fakat bu komut ile num:even kümesine taşınmış oldu.
+
+*********************************************************************
+
+
+sadd num1 1 2 3 4 5
+sadd num2 2 4 6 8 10
+
+smembers num1
+smembers num2
+
+sunion num1 num2
+//belirtilen num1 ve num2 kümelerinin birleşimini gösterir.
+
+sunionstore all_num num1 num2
+//belirtilen num1 ve num2 kümelerinin birleşimini all_num isimli yeni bir kümede saklar.
+
+smembers all_num
+
+
+*********************************************************************
+
+
+sadd k1 a b c d
+sadd k2 c
+sadd k3 a c e
+
+sinter k1 k2 k3
+//k1 k2 ve k3 anahtarlarındaki kesişim kümesini gösterir.
+
+sinterstore sum k1 k2 k3
+//k1 k2 ve k3 anahtarlarındaki kesişim kümesini sum isimli yeni bir küme içinde saklar
+
+smembers sum
+
+
+*********************************************************************
+
+sadd k1 a b c d
+sadd k2 c
+sadd k3 a c e
+
+sdiff k1 k2 k3
+//k1 k2 ve k3 key değerleri arasındaki benzerlik ve farlılıkları gösterir.
+
+sdiffstore sum k1 k2 k3
+//k1 k2 ve k3 anahtarları arasındaki farkları sum isimli yeni bir set veri yapısı içinde saklar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+Redis–Database Design
+
+> istenildiği kadar key-value çifti oluşturulabilir.
+> her satır için farklı key kullanılmalıdır.
+> veritabanı tasarımı için hash yapısı kullanılmalıdır.
+> Ayırıcı ile tablonun birincil anahtar değerlerinden anahtar adı oluşturun (":" gibi)
+> tek bir satır sorgulanmak istenirse key ile işlem yapılmalıdır
+> bir aralık sorgulanmak istendiğinde "*" işareti kullanılmalıdır.
+
+
+
+hmset employee:1 first_name John last_name Doe age 30 hire_date 2020-01-01 salary 15000
+//employee:1 isimli hash veri yapısı oluşturulur
+//first_name last_name age hire_date salary isimli keyler oluşturulur ve karşısındaki değerler atanır.
+
+hmset employee:2 first_name Betty last_name Kim age 30 hire_date 2020-10-01 salary 15000
+
+hgetall employee:1
+//employee:1 isimli hash veri yapısının anahtarlarını ve karşılık gelen değerleri döner
+
+hgetall employee:2
+
+scan 0 match employee:*
+//employee: öneki ile eşleşen tüm hash yapılarını listeler.
+
+keys employee:*
+//employee: öneki ile başlayan keyleri listeler.
+
+
+*******************************************************************************************************************************
+
+hmset order:product:10248:11 unit_price 14 quantity 12 discount 0
+hmset order:product:10248:42 unit_price 9.8 quantity 10 discount 0
+
+hgetall order:product:10248:11
+hgetall order:product:10248:42
+
+keys order:product:10248:*
+keys order:product:*:11
+keys order:product:*:42
+keys order:product:*:*

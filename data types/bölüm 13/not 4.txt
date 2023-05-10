@@ -1,0 +1,7 @@
+set name Redis
+get name
+
+set 10.10.10.1 1
+get 10.10.10.1
+
+flushdb

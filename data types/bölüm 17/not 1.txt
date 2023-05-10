@@ -1,0 +1,401 @@
+HSET movie:1 movie_name "Star Wars: Episode V - The Empire Strikes Back" plot "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued by Darth Vader and a bounty hunter named Boba Fett all over the galaxy." release_year 1980 category "Action" rating 8.7 votes 1127635 imdb_id tt0080684
+//movie:1 isimli hash yapısına movie_name plot release_year category isimli key ve karşılık gelen değerleri ekler
+
+> HSET movie:2 movie_name "The Godfather" plot "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son." release_year 1972 category "Drama" rating 9.2 votes 1563839 imdb_id tt0068646
+
+> HSET movie:3 movie_name "Heat" plot "A group of professional bank robbers start to feel the heat from police when they unknowingly leave a clue at their latest heist." release_year 1995 category "Thriller" rating 8.2 votes 559490 imdb_id tt0113277
+
+> HSET movie:4 movie_name "Star Wars: Episode VI - Return of the Jedi" category "Action" votes 906260 rating 8.3 release_year 1983  plot "The Rebels dispatch to Endor to destroy the second Empire's Death Star." imdb_id "tt0086190"
+
+
+
+CODE: Creating an index
+
+ft.create idx:movie ON hash PREFIX 1 "movie" SCHEMA movie_name TEXT SORTABLE release_year NUMERIC SORTABLE rating NUMERIC SORTABLE category TAG SORTABLE
+//idx:movie isimli tüm hash anahtarlarından oluşan bir indeks oluşturur
+//SCHEMA ifadesinden sonra bu hash içindeki anahtarlar gelir
+//SORTABLE ifadesi key değerinin sıralanabilir olmasını ifade eder
+//TEXT anahtar değerinin metin olacağını NUMERIC ise sayı olacağını belirtir.
+//TAG ifadesi, bir alanın "etiket" olarak işaretlenmesini sağlar. 
+//Bu etiketler, bir belgenin içeriğine doğrudan bağlı değildirler ve önceden tanımlanmış bir set değerini alabilirler.
+//ft.search idx:movie "@category:{komedi}" sorgusunu kullanarak arama yapabilir.
+
+
+ft.search idx:movie "war"
+//idx:movie indeksine war kelimesi içeren belgeleri listeler.
+
+ft.search idx:movie "war -jedi"
+
+ft.search idx:movie "war" RETURN 2 movie_name release_year
+//idx:movie indeksi içinde war kelimesi içeren belgelerin movie_name release_year anahtarına karşılık gelen değerleri getirir. 
+
+ft.search idx:movie "war" RETURN 3 movie_name release_year category
+
+ft.search idx:movie "@movie_name:war" RETURN 3 movie_name release_year category
+//@movie_name bilgisi war olan kaıtların movie_name release_year category anahtarlarına karşılkık gelen değerleri getirir.
+
+ft.search idx:movie "@category:{Thriller}" return 2 movie_name release_year
+//idx:movie indeksi içinde @category bilgisi "Thriller" olan belgelerin movie_name release_year anahtarlarına karşılık gelen değerleri getirir. 
+
+ft.search idx:movie "@category:{Thriller}" return 3 movie_name release_year category
+
+ft.search idx:movie "@category:{Action}" return 3 movie_name release_year category
+
+ft.search idx:movie "@category:{Thriller|Action}" return 3 movie_name release_year category
+//idx:movie indeksi içinde @category bilgisi "Action" veya "Thriller" olan belgelerin movie_name release_year category anahtarlarına karşılık gelen değerleri getirir. 
+
+ft.search idx:movie "@category:{Thriller|Action} @movie_name:-jedi" return 3 movie_name release_year category
+//idx:movie indeksi içinde @category bilgisi "Action" veya "Thriller" olan aynı zamanda @movie_name bilgisinde -jedi ifadesi içeren
+// belgelerin movie_name release_year category anahtarlarına karşılık gelen değerleri getirir. 
+
+
+
+
+
+
+
+CODE: fuzzy logic and search by value
+ft.search idx:movie "%godfather%" return 2 movie_name release_year
+//idx:movie indeksinde başında ve sonunda ne olduğu farketmeksizin "godfother" ifadesi olan kaydın movie_name release_year anahtarlarına karşılık gelen değerleri getirir.
+
+CODE: Value range searches
+
+ft.search idx:movie "@release_year:[1970 1980]" return 2 movie_name release_year
+idx:movie adlı indeks içinde @release_year bilgisi 1970-1980 arasında olan kayıtların movie_name ve release_year bilgilerini getirir.
+
+ft.search idx:movie * FILTER release_year 1970 1980 return 2 movie_name release_year
+//idx.movie indeksinde release_year bilgisi 1970 1980 arasında olan kayıtların movie_name release_year bilgilerini getirir.
+
+ft.search idx:movie "@release_year:[1970 (1980]" return 2 movie_name release_year
+//idx:movie adlı indeks içerisinde @release_year bilgisi 1970-1980 arasında olan kayıtların movie_name release_year bilgilerini getirir.
+//[ işareti dahil anlamında,( işareti dahil değil anlamında kullanılır
+
+ft.search idx:movie "@release_year:[1970 (2000]" return 2 movie_name release_year
+
+ft.search idx:movie "@release_year:[1970 (1995]" return 2 movie_name release_year
+
+
+
+
+CODE: Counting total records/documents
+ft.search idx:movie "*" LIMIT 0 0
+//idx:movie indeksindeki kayıtların sayısını getirir.
+//LIMIT 0 0 ifadesi 0.kayıttan itibaren 0 kayıt getirileceğini ifade eder. bu deyim anlamsızdır o yüzden kayıt sayısını verir.
+
+
+CODE: Insert, Update, Delete and Expire Documents
+ft.search idx:movie "*" LIMIT 0 0
+
+
+CODE: Manage Indexes
+ft._list
+//bu komut kullanılarak tüm anahtarlar listenebilir.
+
+ft.info "idx:movie"
+//idx:movie indeksi hakkında bilgi verir.
+
+ft.alter idx:movie SCHEMA ADD plot TEXT WEIGHT 0.5
+//idx:movie indeksine türü TEXT olan bir key ekler. adını plot olarak ayarlar.
+//bu anahtarın ağırlığı 0.5 olarak ayarlanmıştır. 
+//Bu sayede, "plot" alanı, arama sorgularında diğer alanlardan daha az etkiye sahip olacaktır.
+
+ft._list
+
+ft.info idx:movie
+
+hgetall movie:1
+//movie:1 isimli hash yapısındaki tüm anahtarları listeler.
+
+ft.search idx:movie "Yoda" return 2 movie_name release_year
+
+ft.search idx:movie "Yoda @category:{Action}" return 2 movie_name release_year
+//idx.movie indeksinde içeriğinde "Yoda" ifadesi geçen ve @category bilgisi "Action" olan kayıtların movie_name ve release_year bilgilerini getirir.
+
+
+ft.dropindex idx:movie
+//idx:movie isimli indeksi siler
+
+ft._list
+
+keys *
+
+scan 0 MATCH movie:*
+//önekinde movie: bulunan tümkeyleri getirir.
+
+
+
+
+CODE: Creating Indexes on movies database
+ft._list
+
+hgetall movie:1
+
+ft.create idx:movie ON hash PREFIX 1 "movie:" SCHEMA movie_name TEXT SORTABLE release_year NUMERIC SORTABLE category TAG SORTABLE rating NUMERIC SORTABLE plot TEXT
+
+ft.info idx:movie
+
+hgetall actor:1
+
+ft.create idx:actor ON hash PREFIX 1 "actor:" SCHEMA first_name TEXT SORTABLE last_name TEXT SORTABLE date_of_birth NUMERIC SORTABLE
+
+ft.info idx:actor
+
+hgetall theater:1
+
+ft.create idx:theater ON hash PREFIX 1 "theater:" SCHEMA name TEXT SORTABLE location GEO
+
+ft.info idx:theater
+
+hgetall user:1
+
+ft.create idx:user ON hash PREFIX 1 "user:" SCHEMA gender TAG country TAG SORTABLE last_login NUMERIC SORTABLE location GEO
+//idx:user isimli hashlerden oluşan bir indeks oluşturur.
+//önek olarak user:1 belirlenmiştir
+//SCHEMA ile de hashin içereceği anahtarlar belirlenmiştir.
+//GEO ile de location adlı keyde coğrafi konum depolanacağı belirlenmiştir.
+
+ft.info idx:user
+
+
+
+
+
+CODE: Using @fieldname with and without contains
+ft.search idx:movie "heat" return 2 movie_name release_year
+
+ft.search idx:movie "heat" return 3 movie_name release_year plot
+
+ft.search idx:movie "@movie_name:heat" return 3 movie_name release_year plot
+
+ft.search idx:movie "@movie_name:(heat -california)" return 3 movie_name release_year plot
+//idx:movie indeksinde @movie_name bilgisi içerisinde "heat" ifadesi içeren fakat "california" içermeyen kayıtların 
+//movie_name release_year ve plot bilgilerini getirir.
+
+ft.search idx:movie "@movie_name:(heat -women)" return 3 movie_name release_year plot
+
+
+
+
+CODE: Search with OR criteria
+ft.search idx:movie "@movie_name:(heat)  @category:{Drama|Comedy} " RETURN 3 movie_name release_year category
+//idx:movie indeksinde @movie_name bilgisi "heat" ifadesi içeren ve @category bilgisi "Drama" ya da "Comedy" olankayıtların movie_name release_year category bilgilerini getirir.
+
+ft.search idx:movie "@movie_name:(heat) | @category:{Drama|Comedy} " RETURN 3 movie_name release_year category
+//idx:movie içinde @movie_name bilgisi "heat" ifadesi içeren yada @category bilgisi "Drama" ya da "Comedy" olankayıtların movie_name release_year ve category bilgilerini getirir.
+
+
+
+CODE: Search condition1 AND (condition2 OR condition3)
+ft.search idx:movie "@category:{Mystery}" return 3 movie_name release_year category
+//id:movie indeksinde @category bilgisi "Mystery" olan kayıtarın movie_name release_year category bilgilerini getirir.
+
+
+ft.search idx:movie "@category:{Mystery|Thriller}" return 3 movie_name release_year category
+//idx:movie indeksinde @category bilgisi "Mystery" ya da "Thriller" olan kayıtların movie_name release_year category bilgilerini getirir.
+
+
+
+ft.search idx:movie "@category:{Mystery|Thriller} @release_year:[2014 2014]" return 3 movie_name release_year category
+//idx.movie indeksinde @category bilgisi "Mystery" ya da "Thriller" olan @release_year bilgisi 2014 olan kayıtların movie_name release_year category
+//bilgilerini getirir.
+
+
+
+ft.search idx:movie "@category:{Mystery|Thriller} @release_year:[2014 2014] @release_year:[2018 2018]" return 3 movie_name release_year category
+//idx:movie indeksinde @category bilgisi "Mystery" ya da "Thriller" olan kayıtlardan @release_year bilgisi 2014 ve 2018 olan kayıtları getirir.
+
+
+
+ft.search idx:movie "@category:{Mystery|Thriller} @release_year:[2014 2014] | @release_year:[2018 2018]" return 3 movie_name release_year category
+//idx:movie indeksinde @category bilgisi "Mystery" ya da "Thriller" olan kayıtlardan @release_year bilgisi 2014 ya da 2018 olan kayıtların
+//movie_name release_year category bilgilerini getirir.
+
+
+
+ft.search idx:movie "@category:{Mystery|Thriller} (@release_year:[2014 2014] | @release_year:[2018 2018])" return 3 movie_name release_year category
+//idx:movie indeksinde @category bilgisi "Mystery" ya da "Thriller" olan kayıtlardan @release_year bilgisi 2014 ya da 2018 olan kayıtların
+//movie_name release_year ve category bilgilerini verir.
+
+
+
+CODE: Sort data with SORTBY
+
+ft.search idx:movie "@category:{Action}" return 2 movie_name release_year
+
+
+ft.search idx:movie "@category:{Action}" SORTBY release_year return 2 movie_name release_year
+
+
+ft.search idx:movie "@category:{Action}" SORTBY release_year ASC return 2 movie_name release_year
+
+
+ft.search idx:movie "@category:{Action}" SORTBY release_year DESC return 2 movie_name release_year
+
+
+ft.search idx:movie "@category:{Action}" SORTBY plot DESC return 2 movie_name release_year
+
+
+ft.search idx:movie "@category:{Action}" SORTBY plot DESC return 3 movie_name release_year plot
+
+
+ft.search idx:movie "@category:{Action}" SORTBY plot ASC return 3 movie_name release_year plot
+
+
+ft.info idx:movie
+//idx:movie indeksi hakkında bilgi verir.
+
+
+ft.search idx:movie "@category:{Action}" SORTBY plot DESC return 3 movie_name release_year plot
+
+
+CODE: Limiting results using LIMIT
+ft.search idx:actor "*" limit 0 1
+
+ft.search idx:actor "*" limit 0 10
+
+ft.search idx:movie "@category:{Action}" sortby release_year DESC
+
+
+
+ft.search idx:movie "@category:{Action}" sortby release_year DESC limit 0 100
+//idx:movie indeksinde @category bilgisi "Action" olan kayıtları release_year bilgisine göre DESC olarak sıralar.
+//limit 0 100 ile de 0.kayıttan itibaren 100 kayıt getirmesi belirtildi
+
+ft.search idx:movie "@category:{Action}" limit 0 100 sortby release_year DESC
+
+ft.search idx:movie "@category:{Action}" limit 100 100 sortby release_year DESC
+
+
+
+ft.search idx:movie "@category:{Action}" limit 200 100 sortby release_year DESC
+
+
+
+
+
+CODE: Grouping data
+
+ft.search idx:movie "*" limit 0 0
+//idx:movie indeksindeki kayıtları getirir.
+
+ft.search idx:user "*" limit 0 0
+
+ft.search idx:actor "*" limit 0 0
+
+ft.aggregate idx:movie "*" groupby 1 @release_year
+//idx:movie adlı  indeksteki bütün kayıtları getirir. @release_year bilgisine göre gruplar
+
+ft.aggregate idx:movie "*" groupby 1 @category
+
+ft.aggregate idx:movie "*" groupby 1 @release_year @category
+//idx:movie adlı indeksteki bütün kayıtları getirir. @release_year ve @category kayıtlarına göre gruplar
+
+ft.aggregate idx:movie "*" groupby 2 @release_year @category
+
+ft.aggregate idx:movie "*" groupby 2 @category @release_year
+
+ft.aggregate idx:movie "*" groupby 2 @release_year @category
+
+ft.aggregate idx:movie "*" groupby 2 @category @release_year
+
+ft.aggregate idx:movie "*" groupby 2 @release_year @category
+
+ft.aggregate idx:movie "*" groupby 1 @release_year
+
+ft.aggregate idx:movie "*" groupby 1 @release_year reduce count 0
+//idx:movie adlı indeksteki tüm kayıtları getirir. @release_year bilgisine göre gruplar
+//reduce count 0 ile her gruptaki eleman sayısını verir
+
+ft.aggregate idx:movie "*" groupby 1 @release_year reduce count 0 as total_num_movies
+//idx:movie adlı indeksteki bütün kayıtları getirir. @release_year bilgisine göre gruplar.
+//reduce count 0 as total_num_movies ifadesi her grup için eleman sayısını hesaplar ve total_num_movies adlı değişkene aktarır.
+
+
+ft.aggregate idx:movie "heat" groupby 1 @release_year reduce count 0 as total_num_movies
+
+ft.aggregate idx:movie "*" groupby 1 @release_year reduce count 0 as total_num_movies
+//idx:movie adlı indeksteki bütün kayıtları getirir. @release_year anahtarına göre gruplar.
+//reduce count 0 ile her grup için aynı @release_year değerlerine sahip olan kayıtların sayısını total_num_movies adlı değişkene aktarır. 
+
+ft.aggregate idx:movie "*" groupby 1 @release_year reduce count 0 as total_num_movies SORTBY 1 @release_year
+
+ft.aggregate idx:movie "*" groupby 1 @release_year reduce count 0 as total_num_movies SORTBY 1 @release_year DESC
+
+ft.aggregate idx:movie "*" groupby 1 @release_year reduce count 0 as total_num_movies SORTBY 1 @release_year ASC
+//idx:movie adlı indeksteki bütün kayıtları getirir. @release_year bilgisine göre gruplar.
+//her grup için aynı @release_year değerlerine sahip olan kayıtların sayısını total_num_movies adlı değişkene aktarır. 
+//@release_year bilgisine göre ASC olarak sıralar
+
+ft.aggregate idx:movie "*" groupby 1 @release_year reduce count 0 as total_num_movies SORTBY 2 @release_year ASC
+
+ft.aggregate idx:movie "*" groupby 1 @release_year reduce count 0 as total_num_movies SORTBY 2 @release_year DESC
+
+
+
+
+CODE: Grouping, reducing and sorting data
+
+ft.aggreagate
+//tüm belgeleri birleştirerek bir sonuç kümesi oluşturur.
+
+ft.aggregate idx:movie "*" groupby 1 @release_year reduce count 0 as total_num_movies SORTBY 2 @release_year ASC
+
+ft.aggregate idx:movie "*" groupby 1 @release_year reduce count 0 as total_num_movies SORTBY 2 @release_year DESC
+
+ft.search idx:movie "*" groupby 1 @category
+//idx:movie indeksindeki bütün verileri @category bilgisine göre gruplayarak getirir.
+
+ft.aggregate idx:movie "*" groupby 1 @category
+//idx:movie indeksindeki tümkayıtlar getirilir. @category bilgisine göre gruplanır.
+
+ft.aggregate idx:movie "*" groupby 1 @category sortby @category DESC
+//idx:movie indeksindeki tümkayıtlar getirilir. @category bilgisine göre gruplanır.
+//aynı zamanda @category bilgisi DESC(azalan) olarak sıralanır.
+
+ft.aggregate idx:movie "*" groupby 1 @category sortby 2 @category DESC
+//idx.movie indeksinden tüm kayıtları getirir. @category bilgisine göre gruplar. @category bilgisini 2.satırdaki sütuna göre DESC olarak sıralar.
+
+
+ft.aggregate idx:movie "*" groupby 1 @category sortby 1 @category
+
+ft.aggregate idx:movie "*" groupby 1 @category sortby 2 @category DESC
+//idx:movie adlı indeskteki bütün kayıtları getirir. @category bilgisine göre gruplar.
+//sıralamayı yine @category bilgisine göre DESC olarak yapar.
+
+
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 sortby 2 @category DESC
+//idx:movie inndeksinden tüm kayıtlar getirilir.
+//@category bilgisine göre gruplanır. reduce count 0 ile her grup için film sayısı hesaplanır
+//sortby 2 @category DESC ile kategoriye göre sıralanır. 
+
+
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as total_num_movies sortby 2 @category DESC
+//idx:movie indeksi içideki tüm belgeler getirilir. @category bilgisine göre gruplanır. reduce count 0 ile her grup için film sayısı hesaplanır.
+//hesaplanan sayı total_num_movies isimli değişkene aktarılır. daha sonra @category bilgisini 2.satırdaki sütuna göre DESC olarak sıralar.
+
+
+
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as total_num_movies sortby 2 @category
+
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as total_num_movies sortby 1 @category
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

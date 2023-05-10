@@ -1,0 +1,21 @@
+publish news1 "news1"
+//news1 isimli kanala "news1" mesajı yayınlandı.
+
+publish news2 "news2"
+
+
+
+subscribe news1
+
+pubsub channels *
+//oluşturulan bütün kanalları listeler.
+
+subscribe news
+
+
+
+pubsub channels top*
+//top ile başlayan bütün kanalları listeler
+
+pubsub channels news1
+//news1 öneki ile başlayan tüm kanalları listeler.

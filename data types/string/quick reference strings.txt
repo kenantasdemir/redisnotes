@@ -1,0 +1,36 @@
+Quick Reference - Strings
+The Redis String type is the simplest type of value you can associate with a Redis key.
+
+String is not the best term for this type because it is used to hold numeric types as well.
+
+Internally it is held as a byte array.
+
+A string is a simple scalar that can hold a
+
+single value or
+
+it can hold an XML or
+
+a JSON document as well
+
+A string value can't be bigger than 512 MB.
+
+SET, SETNX, MSET, MSETNX
+
+Set value, Set value if key does not exist, Set multiple values, Set multiple values if none of the keys exist
+
+GET, MGET, GETSET
+
+Get value, Get multiple values, Set value, return old value
+
+PSETEX, SETEX
+
+Set with expiry in seconds and milliseconds
+
+INCR, INCRBY, INCRBYFLOAT
+
+Increment integer, Add to integer, Add to float
+
+DECR, DECRBY
+
+Decrement integer, Subtract from integer

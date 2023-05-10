@@ -1,0 +1,161 @@
+zadd user:followers 10 adam 20 scott 30 amy
+//user:followers isimli sıralı küme yapısına yukarıdaki elemanları ekler
+
+XX listede olan elemanları günceller.yeni eleman eklemez
+NX listeye yeni eleman ekler. güncelleme yapmaz
+
+zrange users:followers 0 -1
+//sıralı kümedeki elemanları baştan sona yazdırır
+//0 ilk indeks -1 ise son indekstir.
+
+zrange users:followers 0 -1 withscores
+//elemanları score değerleriyle birlikte listeler.
+
+************************************************************************************************
+
+zadd users:followers 1 John 100 David
+zrange users:followers 0 -1 withscores
+
+zrange users 0 0
+//ilk elemanı verir
+
+zrange users -1 -1
+//son elemanı verir.
+
+zrange users 0 0 rev
+//son elemanı verir
+
+zrevrange users:followers 0 -1
+//zrevrange komutuyla elemanları sondan başlayarak listelenir
+
+zrevrange users:followers 0 -1 withscores
+//zrevrange komutuyla elemanları sondan başlayarak skorlarıyala birlikte listeler
+
+************************************************************************************************
+
+zincrby users:followers 5 adam
+//zincrby komutu bir elemanın score bilgisini arttırmak için kullanılır (6 adam)
+
+zrange users:followers 0 -1 withscores
+
+zincrby users:followers -5 scott
+//negatif değer verildği için elemanın değeri azaltılacaktır(1 adam)
+
+zrange users:followers 0 -1 withscores
+
+zincrby users:followers 5 hans
+//elemanın skoru 5 arttırılır ve küme içindeki yeri değişir.
+
+zrange users:followers 0 -1 withscores
+
+
+************************************************************************************************4
+Lexicographical order
+
+zadd num1:ss 1 a 2 b 3 c 3 d
+zrange num1:ss 0 -1 withscores
+
+zadd num2:ss 1 a 2 b 3 c 4 c
+zrange num2:ss 0 -1 withscores
+
+zadd num3:ss 1 a 2 b 3 c 4 ca
+zrange num3:ss 0 -1 withscores
+
+zrevrange num3:ss 0 -1 withscores
+
+************************************************************************************************4
+//rank starts with 0
+
+
+zadd stocks:top 1 AAPL 2 MSFT 3 F 4 QQQ 5 C 6 IBM 7 TSLA 8 AMZN 9 NIO 10 SPCE
+zrange stocks:top 0 -1 withscores
+zrevrange stocks:top 0 -1 withscores
+
+zrank stocks:top AAPL
+//stocks:top kümesinde AAPL elemanının indeksini döndürür.
+
+zrank stocks:top MSFT
+zrank stocks:top F
+
+zrevrank stocks:top AAPL
+//elemanları tersten sıralar.
+//AAPL en başta olduğu için bu elemanı en sona atar
+
+zunion 3 kume1 kume2 kume3
+//3 kümeyi birleştirir.
+
+ZUNIONSTORE birlesik_kume 3 kume1 kume2 kume3
+//3 kümeyi birlştirir ve birlesik_kume içine aktarır.
+
+************************************************************************************************
+
+zrem kume1 armut muz
+//kume1 isimli kümei içerisine armut ve muz isimli elemanları ekler.
+
+zinter 2 kume1 kume2
+//kume1 ve kume2 isimli 2 elemanın kesişimini verir.
+
+zinterstore kesisim_kume 2 kume1 kume2
+//kume1 ve kume2 isimli 2 elemanın kesişimini kesisim_kume isismli kumeye aktarır.
+
+zadd myset key1 val1
+zadd myset key2 val2
+zcard myset
+//myset isimli sıralı küme içindeki eleman sayısını verir.
+
+zcount mykume 1 15
+//mykume isimli sıralı küme içinde 1.indeks ile 15.indeks arasındaki verileri getirir. 
+
+zrandmember mykume
+//mykume isimli sıralı listeden rastgele bir eleman getirir.
+
+
+zrandmember mykume 5 withscores
+//mykume isimli sıralı listeden rastgele 5 eleman skorlarıyla birlikte getirir.
+
+************************************************************************************************
+
+zadd mykume 1 "one"
+zscore mykume "one"
+//verilen elemanın skorunu verir.
+
+zmscore mykume "one" "two" "three"
+//verilen elemanların skor bilgisini verir.
+
+zintercard mykume1 mykume2
+//mykume1 ve mykume2 isimli sıralı kümenin kesişen elemanların sayısını getirir.
+
+zpopmax products
+
+zpopmax mykume1 1
+//mykume1 isimli kümeden en yüksek skora sahip elemanı kaldırır.
+
+
+zpopmax mykume1 5
+//mykume1 isimli kümeden en yüksek skora sahip 5 elemanı kaldırır.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

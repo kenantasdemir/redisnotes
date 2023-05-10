@@ -1,0 +1,212 @@
+set hello 1
+set hello1 "test"
+object refcount hello
+object refcount hello1
+
+object encoding hello
+object encoding hello1
+
+object idletime hello
+object idletime hello1
+
+lpush fruits "banana"
+object refcount fruits
+object encoding fruits
+object idletime fruits
+
+
+####################################################################################
+
+set name "Joe"
+
+get name
+
+dump name
+
+restore name 0 <paste code for key: name >
+
+get name
+
+del name
+
+restore name 0 <paste code for key: name >
+
+get name
+
+info
+
+####################################################################################
+
+		----Redis Komut Geçmişi---
+
+cd ~
+pwd
+ls
+
+ls -lrta
+
+tail -10 .rediscli_history
+
+
+
+####################################################################################
+
+set name1 1
+
+set name2 2
+
+set name3 e
+
+set name4 4
+
+debug populate 50
+
+redis-cli --scan
+//bütün keyleri verir.
+
+redis-cli --scan --pattern '*'
+//bütün keyleri verir.
+
+redis-cli --scan --pattern 'k*'
+//k ile başlayan keyleri verir.
+
+redis-cli --scan --pattern '*key*'
+//içinde key ifadesi geçen keyleri listeler
+
+redis-cli --scan --pattern '*name*'
+//içinde name ifadesi geçen keyleri listeler
+
+redis-cli --scan --pattern '*' > keys.csv
+//bütün keyleri keys.csv dosyasına yazar.
+
+cat keys.csv
+
+redis-cli -h
+
+
+####################################################################################s
+
+
+debug populate 50
+keys *
+
+redis-cli get mypasswd
+
+redis-cli --scan --pattern '*key*'
+redis-cli --scan --pattern '*key*' > keys.csv
+
+####################################################################################
+
+
+CODE: Dump and Restore Keys
+set name "Joe"
+
+get name
+
+dump name
+
+restore name 0 <paste code for key: name >
+
+get name
+
+del name
+
+restore name 0 <paste code for key: name >
+
+get name
+
+info
+
+
+set name "Joe"
+get name
+
+dump name
+"\x00\x03Joe\n\x00\xdcQY\xaa\x02\xc7\xfd("
+restore name2 0 "\x00\x03Joe\n\x00\xdcQY\xaa\x02\xc7\xfd("
+0 = expire yok
+
+
+set isim "John"
+get isim
+
+dump isim
+restore isim 0 "\x00\x04John\n\x00S\xe8\xb7Y\xc1\x8bt\x18" REPLACE
+info
+
+*********************************************************************
+
+
+redis-cli --scan
+
+vi readkeys.sh
+#!/bin/bash
+redis-cli --scan
+:wq
+readkeys.sh
+chmod 755 readkeys.sh
+./readkeys.sh
+
+
+vi readkeys.sh
+#!/bin/bash
+redis-cli --scan > all.keys
+:wq
+./readkeys.sh
+cat all.keys
+
+
+vi readkeys.sh
+#!/bin/bash
+redis-cli --scan > all.keys
+while read -r key
+do
+   value=$(redis-cli get "$key")
+   echo $key '|' $value
+done < all.keys
+:wq
+./readkeys.sh
+
+#!/bin/bash
+redis-cli --scan > all.keys
+while read -r key
+do
+  value=$(redis-cli get "$key")
+  echo $key '|' $value
+done < all.keys
+
+
+
+#################################################################################################################
+
+CODE: Using URL, echo to list all keys
+
+URL=redis://localhost:6379
+echo "KEYS *" | \
+redis-cli -u $URL | \
+sed 's/^/GET /' | \
+redis-cli -u $URL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

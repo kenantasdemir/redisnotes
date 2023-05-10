@@ -1,0 +1,6 @@
+String Encoding Types
+Redis decide the encoding automatically as per string value
+int:For strings representing 64-bit signed integers
+embstr:For strings whose length is less or equal to 44 bytes (this used to be 39 bytes in Redis 3.x); this type
+of encoding is more efficient in memory usage and performance
+raw :For strings whose length is greater than 44 bytes

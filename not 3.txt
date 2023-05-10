@@ -1,0 +1,28 @@
+empty string is also valid key
+512 mb boyutlu key tanımlanabilir fakat tavsiye edilmez
+çok kısa olmasın
+
+set userAdam Adam
+set userAmy Amy
+get *
+keys *
+
+set userJohn John
+keys *
+
+set user:100 Adam
+set user:101 Amy
+keys *
+
+del userJohn userAdam
+keys *
+
+del userAmy
+keys *
+
+set user:100:group HR
+set user:101:group Sales
+set user:100:friends Scott
+set user:101:friends John
+
+keys *

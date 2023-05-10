@@ -1,0 +1,74 @@
+debug populate 50
+//50 adet rastgele key oluşturur.
+keys *
+
+scan 0
+//bulunan tüm anahtarları tarar
+scan 2
+scan 14
+//Redis veritabanındaki 14 numaralı bölümde (slot) depolanan anahtarların taranmasına izin verir. 
+//Bu, sadece bu bölümdeki anahtarların taranmasını ve diğer bölümlerdeki anahtarların göz ardı edilmesini sağlar.
+
+scan 21
+scan 59
+scan 0
+
+scan 222
+scan 0
+scan 0 count 15
+//baştan başlayarak tüm anahtarları 15 anahtarlık kümeler şeklinde tarar
+scan 6 count 15
+scan 21 count 15
+scan 15 count 15
+//15 numaralı bölümden başlayarak 15 anahtarlık kümeler şeklinde tarar
+
+scan 0 match *
+//redis veritabanındaki tüm anahtarları döndürür.
+
+scan 0 match *key:?
+scan 2 match *key:?
+//2 numaralı bölümden başlayarak key ile başlayan tüm anahtarları döndürür. 
+//keyden sonra ":" işareti key ifadesinden sonra bir karakter daha gelmesi gerektiğini ifade eder.
+
+scan 14 match *key:?
+
+type key:1
+//key:1 isimli anahtarın tipini döndürür.
+
+set hello 1
+type hello
+scan 0 type string
+//string tipindeki tüm anahtarları döndürür.
+
+scan 0 count 10 type string 
+//baştan başlayarak string tipindeki anahtarlardan 10 tane getirir.
+
+scan 0 match *h* type string
+//baştan başlayarak içinde "h" harfi bulunan ve tipi string olan verileri getirir.
+
+keys *
+
+scan 0 match *h* type string
+scan 2 match *h* type string
+//2.bölümden başlayarak içinde "h" harfi bulunan ve tipi string olan anahtarları verir.
+
+scan 14 match *h* type string
+
+scan 0 match *h* type string count 10
+scan 0 match *h* type string count 20
+//baştan başlayarak içinde "h" harfi bulunan ve tipi string olan anahtarlardan 20 tane getirir.
+scan 0 match *h* type string count 21
+scan 0 match *h* type string count 30
+
+geoadd mygeokey 30 20 mygeovalue
+//mygeokey adlı geo setine 30 boylam ve 20 enlem değerine sahip mygeovalue anahtarı ekler
+
+type geokey
+
+scan 0 type zset
+//türü zset olan bütün anahtarları sıralar
+
+//production ortamında keys yerine scan kullanılmalıdır.
+//scan ile key tarama yapıldığı zaman souçlara sayfalanarak getirilir.
+
+

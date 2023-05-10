@@ -1,0 +1,30 @@
+CLIENT ID
+//o anki bağlantının ID bilgisini görüntüler.
+
+CLIENT INFO
+//o anki bağlantı hakkında bilgiler görüntüler.
+
+CLIENT PAUSE 20000
+//redis istemcilerini milisaniye cinsinden belirli bir süre askıya almak için kullanılır.
+//bu örnekte istemciler 20 saniye boyunca askıya alındı.
+
+CLIENT UNPAUSE
+//istemcilerin komut işleme kısıtlaması kaldırıldı.
+
+istemci askıya alınırken ALL ve WRITE olmak üzere iki seçenekten birini uygular.
+default olan ALL'dur. bu komut bütün istemci komtlarını bloklar.
+WRITE geçilirse WRITE komutunu çalıştıramazlar.
+
+CLIENT SETNAME johndoe
+//o anki bağlantıya yeni bir isim atar.
+//yeni bağlantı ismi artık johndoe olmuş oldu.
+
+CLIENT GETNAME
+//o anki bağlantının ismini döndürür.
+
+CLIENT LIST
+//bağlantı hakkında bilgileri human-readable formatta görüntüler.
+
+
+CLIENT UNBLOCK clientid
+//bloklanmış bir kullanıcının bloğunu kaldırır.

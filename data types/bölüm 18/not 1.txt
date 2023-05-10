@@ -1,0 +1,312 @@
+RedisJSON
+RedisJSON is a Redis module that implements a JSON data type for Redis
+It allows
+• storing,
+• updating and
+• fetching JSON values from Redis keys
+It allows us to store and manipulate JSON objects
+Full support of the JSON standard
+Documents are stored as binary data in a tree structure, allowing fast access to sub-elements
+
+Atomic operations for all JSON values types
+Fast selection of elements inside documents
+Native JSON data structure in Redis
+Schema free - Each document can contain different elements and structure
+Having our JSON in Redis, we can SET and GET single of multiple properties of JSON Objects
+
+
+Why do we need RedisJSON?
+However, To modify a SINGLE PROPERTY in a STRING, we have to;
+• Pull the entire string
+• De-Serialized it
+• Change the desired property
+• Re-Serialized it and
+• store again
+Not an efficient way...
+
+
+
+Why do we need RedisJSON?
+Also hashes by design only store;
+Strings and Numbers
+So we wont be able to work with lists and other embedded objects any more.
+
+
+RedisJSON
+RedisJSON allows us to store a JSON object
+• In a single key
+• Regardless of depth or Child data types
+• No additional keys or data structure mappings are required
+• We can view or modify JSON objects properties/attributes without
+retrieving the entire object
+• Fast access
+• Less network bandwidth used
+
+
+
+
+
+docker run -p 6379:6379 --name redis-redisjson redislabs/rejson:latest
+//bu komut ile redisjson kurulumu yapılır
+
+redis-cli
+
+json.set myobje . "{'*foo':'bar'}"
+//myobje adında bir JSON nesnesi oluşturuldu.
+//. işareti path bilgisini belirtir. bu işaret oanki dizini işaret eder.
+
+
+json.get myobje
+//bu objenin key-value çifti elde edildi.
+//"{\'foo\':\'bar\'}" --çıktı bozuk elde edildi bunun için cli başlatırken --raw seçeneği kullanmalıyız.
+
+exit
+//redis-serverdan çıkıldı
+
+redis-cli --raw
+// "--raw" seçeneği, redis-cli çıktısının işlenmemiş (raw) olmasını sağlar.
+
+json.get myobje
+
+json.type myobje
+
+json.type . myobje
+//aynı dizinde bulunan myobje adlı objenin türünü döndürür.
+
+
+json.type myobje .foo
+//myobje isimli json verinin foo isimli anahtarın türünü verir.
+
+json.type myobje
+//myobje isimli nesnenin türünü verir.
+
+json.set myobje .test 1
+//myobje isimli nesneye test adlı key eklendi değer olarak 1 verildi.
+
+json.get myobje
+
+json.type myobje .test
+//myobje isimli json verinin test isimli anahtarın türünü verir.
+
+json.set user:101 . '{"name":"John"}'
+//o anki dizinde user:101 adlı anahtara yeni JSON veri eklendi
+
+json.get user:101
+//user:101 isimli anahtara eklenen JSON veri yazdırıldı.
+
+json.set user:101 .age 30
+//user:101 isimli anahtara age:30 key-value çifti eklendi
+
+json.get user:101
+
+json.type user:101 .age
+//user:101 anahtarı içinde age verisinin türü yazdırılır.
+
+######################################################################################################################################
+
+json.get myobje
+json.strlen myobje
+//burada hata verecek çünkü myobje adlı öğre bir objedir ve objelerin uzunlukları strlen ile alınamaz.
+
+json.type myobje
+
+json.strlen myobje .foo
+//myobje adlı nesnenin foo isimli alanının uzunluğu alındı.
+
+json.strlen myobje .test
+json.type myobje .test
+
+json.get user:101
+
+json.strlen user:101 .name
+//user:101 isimli anahtarın içinde bulunan name alanının uzunluğunu verir.
+
+json.strappend myobje .foo
+//bu hatalı bir kullanım çünkü string tutulan yere obje eklenmeye çalışıyor.
+
+json.set name . '"John"'
+json.get name
+json.strlen name
+
+json.strappend name " Doe"
+//bu kullanım hatalı çift tırnağın dışına tek tırnak eklenmeli
+
+json.strappend name '" Doe"'
+json.get name
+
+######################################################################################################################################
+
+
+json.get user:101
+
+jsob.objlen user:101
+//user:101 adlı objenin uzunluğunu verir.
+
+jsob.objkeys user:101
+//obje içindeki anahtarları verir.
+
+json.get myobje
+jsob.objkeys foo
+
+json.get name
+
+jsob.objkeys name
+//bu kullanım hatalı obje beklerken string aldı.
+
+jsob.objlen name
+//bu kullanım hatalı obje beklerken string aldı.
+
+jsob.objkeys myobje
+//obje içindeki keyleri verir.
+
+
+######################################################################################################################################
+
+json.set num . 0
+json.get num
+
+json.numincrby num . 1
+//her çalışmada num anahtarına karşılık gelen değeri 1 arttırır.
+
+json.numincrby num . -1
+//her çalışmada num anahtarına karşılık gelen değeri 1 azaltır.
+
+json.nummultby num . 20
+//her çalışmada num anahtarına karşılık gelen değeri 20 ile çarpar.
+
+json.get user:101
+
+json.numincrby user:101 .age 2
+//user:101 adlı anahtarın age alanını 2 arttırır.
+
+json.get user:101
+
+json.numincrby user:101 .age -2
+//user:101 adlı anahtarın age alanını 2 azaltır.
+
+json.get user:101
+
+json.nummultby user:101 .age 2
+//user:101 adlı anahtarın age alanını 2 ile çarpar.
+
+json.numincrby user:101 .age -30
+//user:101 adlı anahtarın age alanını 30 azaltır.
+
+json.get user:101
+
+######################################################################################################################################
+
+json.set k1 . '"1"'
+json.get k1
+json.del k1
+//k1 adlı anahtarı siler
+
+json.set u1 . '[true,{"name":"John"},null]'
+json.get u1
+json.type u1
+//array
+
+json.get u1 [1]
+//yukarıdaki dizinin içindeki JSON objesini döndürür.
+
+json.get u1 [1].name
+//yukarıdaki dizinin içindeki JSON objesinin name alanına karşlık gelen değeri döndürür.
+
+json.get u1 [0]
+json.get u1 [2]
+
+json.del u1 [-1]
+//belirtilen dizinin son elemanını diziden çıkarır. başarılı olursa 1 aksi takdirde 0 döner.
+
+json.get u1
+json.del u1 [0]
+
+######################################################################################################################################
+
+json.debug memory user:101
+//user:101 adlı verinin bellek kullanım hakkında bilgi verir.
+
+json.debug memory myobje
+//myobje adlı verinin bellek kullanımı hakkında bilgi verir.
+
+json.get myobje
+
+json.get user.101
+json.set emptystr . '""'
+
+json.debug memory emptystr
+json.set arr . '[]'
+
+json.debug memory arr
+
+json.set obj . '{}'
+json.debug memory obj
+
+json.set arr . '[""]'
+json.debug memory arr
+
+json.set arr . '["","",""]'
+json.debug memory arr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

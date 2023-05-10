@@ -1,0 +1,18 @@
+Use Cases - Sets
+Redis Sets can be used in a lot of scenarios like;
+
+Unique user tracking visiting a website
+
+Holding unique list of items like user groups, user avtar names, categories, products names, country codes etc.
+
+Sharded data of unique values for an application
+
+IP Tracking - Storing unique IP addresses to track visitors
+
+Implementing a product recommendation based on a user action, similar to Amazon feature where they display 'People also buy these items'
+
+Analyzing Ecommerce Sales - Many online e-commerce websites use Redis Sets to analyze customer behavior, such as searches or purchases for a specific product category or subcategory. For example, an online bookstore owner can find out how many customers purchased technology books in Technology section.
+
+Inappropriate Content Filtering - For any app that collects user input, it’s a good idea to implement some kind of content filtering for any inappropriate words, and we can do this with Redis Sets by adding words you’d like to filter to a SET key and the SADD command. e.g.
+
+SADD bad_words "word1" "word2"

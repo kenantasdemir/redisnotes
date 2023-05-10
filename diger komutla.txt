@@ -1,0 +1,57 @@
+COMMAND COUNT
+//redisteki toplam komut sayısını döndürür.
+
+LASTSAVE
+//LASTSAVE komutu, Redis'in son veri snapshotunu almasından sonra geçen saniye sayısını verir.
+
+Redis, in-memory bir veritabanı olduğundan, verileri sürekli olarak diskte saklamaz. 
+Ancak Redis, düzenli aralıklarla verileri diskte saklar. 
+Bu işlem, "snapshotting" adı verilen bir işlemdir ve 
+Redis'in verilerin kaybolmasını önlemek için yaptığı bir yedekleme işlemidir.
+
+
+MEMORY DOCTOR
+//bellek ile ilgili sorunları görüntüler ve iyileştirmeler için bazı tavsiyeler verir.
+
+LATENCY DOCTOR
+//redisin performans sorunlarını görüntüler ve bunlar hakkında tavsiyeler verir.
+//varsayılan olarak disableddır.
+//bu komutu kullanmak için latency monitör özelliği aktif etmek gerekir.
+
+CONFIG SET latency-monitor-threshold 100
+//Bu komut, Redis sunucusunda yapılan işlemlerin en az 100 milisaniye sürmesi gerektiğini belirler. 
+
+LATENCY HISTOGRAM
+//Bu özellik, Redis sunucusunda yapılan işlemlerin işlem sürelerinin dağılımını histogram formatında gösterir. 
+//Bu sayede, Redis sunucusunda en çok zaman alan işlemlerin neler olduğunu ve performans sorunlarının kaynağını tespit etmek daha kolay hale gelir.
+
+SET key1 value2
+GET key1
+LATENCY HISTOGRAM GET
+Bu komut, Redis sunucusunda yapılan GET işlemlerinin işlem sürelerinin histogram formatında gösterir.
+yapılan GET isteği sayısını da döner.
+Histogram formatında gösterilen veriler, 
+işlem sürelerinin bantlar halinde gruplandırılmış halleridir. 
+Her bir bant, belirli bir aralıktaki işlem sürelerini temsil eder.
+
+
+LATENCY RESET
+//Redis sunucusunda yapılan işlemlerin işlem sürelerini sıfırlar ve ölçümü sıfırdan yeniden başlatır.
+
+
+LATENCY LATEST
+//Redis sunucusunda en son yapılan işlemin süresini ve tarihini gösterir.
+
+LATENCY GRAPH get
+//Redis sunucusunda ölçülen GET işlem sürelerini grafiğe dönüştürür ve sonuçları ekranda gösterir.
+
+LATENCY HISTORY get
+//önceki get işlemlerinin sonuçlarını listeler.
+
+
+SET samplekey samplevalue
+MEMORY USAGE samplkey
+//bu komut redis veritabanında kayıtlı bir anahtarın byte cinsinden değerini döndürür.
+
+
+

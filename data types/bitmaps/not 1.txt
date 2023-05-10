@@ -1,0 +1,19 @@
+setbit mykey 7 1
+//mykey adlı anahtarın 7.bit poziyonuna 1 değerini yazar
+
+getbit pings:2024-01-01-00:00 123
+//belirtilen bit posizyonunda bulunan saklanan bit değerini döndürür.
+
+bitpos mykey 1 10 27
+//mykey isimli anahtarda 10.indeks ve 27.indeks arasında 1 bitini arar.
+
+bitcount mykey 1 4 byte
+//mykey adlı anahtarın ilk dört byteındaki ayarlanmış bit sayısını döndürür.
+//1.byte'ın itibaren aramaya başlar.
+
+bitcount mykey 12 4 byte
+//mykey adlı anahtarın 12.byte'ından başlayarak 4 byte boyunca olan kısımdaki ayarlanmış bit sayısını verir.
+
+bitcount mykey 5 30 bit
+//mykey adlı anahtarın 5.bitinden başlayarak 30.bite kadar ayarlanmış bit sayını verir.
+

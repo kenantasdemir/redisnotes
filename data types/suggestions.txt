@@ -1,0 +1,44 @@
+Redis, dağıtılmış bellek tabanlı bir veri depolama sistemidir ve bir dizi veri yapıları sunar. RedisAI modülü, Redis kullanıcılarına yapay zeka işlemlerini gerçekleştirme imkanı sağlar. Bu modül, doğal dil işleme (NLP) konusunda özellikle faydalı olan "Suggestion" (öneri) veri yapısını da içerir.
+
+Suggestion veri yapısı, bir kelime veya kelime grubu listesi üzerinde tamamlama önerileri sağlar. Örneğin, bir arama çubuğuna birkaç harf girildiğinde, o harfleri içeren kelimelerin bir listesi görüntülenebilir. Bu, otomatik tamamlama özelliğini uygulamak için faydalıdır.
+
+Redis'in Suggestion veri yapısı, küçük ila büyük ölçekli uygulamalarda kullanışlıdır. Bu veri yapısı, önerilen kelimelerin hızlı bir şekilde döndürülmesini sağlar ve bu da kullanıcı deneyimini geliştirir. Örneğin, bir e-ticaret sitesinde bir arama kutusuna "tele" yazdığınızda, "telefon", "televizyon" gibi öneriler hızlı bir şekilde gösterilebilir.
+
+Suggestion veri yapısı ayrıca, otomatik tamamlama özelliği sağlamak için kullanılan diğer veri yapılarına kıyasla daha az bellek tüketir ve daha hızlıdır. Bu nedenle Redis, özellikle NLP konusunda çalışanlar için Suggestion veri yapısının kullanımını kolaylaştıran RedisAI modülünü sunar.
+
+ft.sugadd mysug "helloworld" 1
+//mysug adlı dizine "helloworld" ifadesini ekler
+//1 ifadesi terimin öncelik değerini ifade eder. opsiyoneldir.
+
+ft.sugdel mysug "helloworld"
+//mysug adlı suggestion indeksten bir string siler.
+
+ft.suglen mysug
+//Bu komut, "mysug" adlı "suggest" dizininin içindeki toplam terim sayısını döndürür. 
+
+
+ft.sugget mysug sometext FUZZY MAX 3 WITHSCORES
+//mysug adlı suggestion dizide sometext ifadesini arar
+//FUZZY parametresi ile benzer sonuçlar da listelenir
+//MAX 3 parametresi maksimum 3 sonuç getirilmesini ifade eder
+//WITHSCORES parametresi ile sonuçların yanı sıra skorlarını da getirir.
+
+
+Redis, anahtar-değer depolama yapısı ile bilinen bir NoSQL veritabanıdır. Redis ayrıca, verileri önceden tanımlanmış anahtarlarla değil, farklı veri yapıları ile yönetebilir. Bu veri yapılarından biri de Dictionary'dir.
+
+Dictionary veri yapısı, bir anahtar ve ona karşılık gelen bir değer çiftlerinden oluşur. Bu çiftler, eşleştirilmiş bir şekilde depolanır ve kolayca erişilebilir. Redis'te Dictionary veri yapısı, "Hash" adı altında tanımlanmıştır ve her bir Hash, bir anahtar ile tanımlanır.
+
+Dictionary veri yapısı, bir dizi işlem için kullanılabilir. Örneğin, Dictionary veri yapısı, bir kullanıcının profil bilgilerini depolamak için kullanılabilir. Bu durumda, kullanıcının ID'si anahtar olarak kullanılabilir ve bu anahtar altında kullanıcının adı, soyadı, yaş gibi bilgileri değer olarak depolanabilir.
+
+Dictionary veri yapısı ayrıca, birçok farklı veri türü için anahtar-değer çiftleri sağlar ve bu çiftlerin birbirleriyle ilişkilerini yönetebilir. Bu nedenle, Dictionary veri yapısı, birçok farklı senaryoda kullanılabilir ve Redis kullanıcıları için yararlı bir veri yapısıdır.
+
+
+ft.dictadd mydict foo bar "merhabadunya"
+//mydict adlı sözlük yapısında foo adlı alanın bar değerine "merhabadunya" ifadesi ekler.
+
+
+ft.dictdel mydict foo bar "merhabadunya"
+//mydict adlı sözlük yapısının foo adlı alanın bar değerindeki "merhabadunya" ifadesini siler
+
+ft.dictdump mydict
+//mydict adlı sözlük yapısında tüm alanları boşaltır.
