@@ -113,6 +113,7 @@ sunion num1 num2
 
 sunionstore all_num num1 num2
 //belirtilen num1 ve num2 kümelerinin birleşimini all_num isimli yeni bir kümede saklar.
+//num2 adlı set yapısı silinir.
 
 smembers all_num
 
@@ -129,6 +130,7 @@ sinter k1 k2 k3
 
 sinterstore sum k1 k2 k3
 //k1 k2 ve k3 anahtarlarındaki kesişim kümesini sum isimli yeni bir küme içinde saklar
+//diğer set yapıları korunur.
 
 smembers sum
 
@@ -140,10 +142,14 @@ sadd k2 c
 sadd k3 a c e
 
 sdiff k1 k2 k3
-//k1 k2 ve k3 key değerleri arasındaki benzerlik ve farlılıkları gösterir.
+//k1 k2 ve k3 key değerleri arasındaki farlılıkları gösterir.
+//k1 elemanında olup k2 ve k3te olmayanları görüntüler.
+
 
 sdiffstore sum k1 k2 k3
 //k1 k2 ve k3 anahtarları arasındaki farkları sum isimli yeni bir set veri yapısı içinde saklar
+//k1 de olup k2 ve k3de olmayan elemanları sum isimli sete ekler.
+
 
 
 
