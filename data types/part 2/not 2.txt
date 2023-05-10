@@ -6,12 +6,21 @@ lpush dept "Admin" "HR"
 
 keys *
 get dept
-type users
+//listelere klasik veri yapılarından farklı olarak bu şekilde ulaşılamaz.
+
+//liste veri tüürndeki yapılara ulaşmak için bu komut kullanılabilir.
+scan 0 match * type list count 5
+//tipi liste olan yapılardan 5 tanesi getirilecektir.
+
+
+herhangi bir anahtarın türünü öğrenmek için type ardından da o anahtarın adını girmelisiniz.
+type dept
+
 
 
 lrange dept 0 -1
 //dept isimli listenin tüm elemanlarını yazdırır.
-//-1 last element anlamına gelir
+//-1 son eleman anlamına gelir
 
 lpush dept programming
 
