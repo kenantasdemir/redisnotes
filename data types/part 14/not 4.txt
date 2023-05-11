@@ -1,12 +1,41 @@
 set hello 1
 set hello1 "test"
 object refcount hello
+
+ belirtilen anahtarın değerine ait referans sayısını (reference count) döndürür.
+
+Redis'te, her anahtar için değerine referans sayısı atanır. Bu referans sayısı, anahtarı kullanan tüm bağlantı noktaları ve işlemler için tutulur. 
+Anahtarın referans sayısı, belirli bir anahtarın kaç kez referans aldığını gösterir. 
+Örneğin, bir anahtarın referans sayısı 3 ise, o anahtarın 3 farklı yerde kullanıldığı anlamına gelir.
+
+OBJECT REFCOUNT komutu, belirtilen anahtarın referans sayısını döndürür. 
+Örneğin, OBJECT REFCOUNT hello komutu, hello adlı bir anahtarın referans sayısını döndürür. 
+Bu, hello anahtarının kaç kez referans alındığını ve kaç bağlantı noktası veya işlem tarafından kullanıldığını gösterir.
+
+Bu komut, Redis içindeki bellek yönetimini anlamak ve performansı iyileştirmek için kullanışlıdır. 
+Özellikle, çok fazla referans sayısına sahip anahtarları tespit etmek ve gereksiz bellek kullanımını önlemek için kullanışlıdır.
+
 object refcount hello1
 
 object encoding hello
+//hello adlı anahtarın tuttuğu değerin türünü döner.
+//bu örnekte hello anahtarı 1 değerini tutar. yani int
+
 object encoding hello1
 
 object idletime hello
+belirtilen anahtarın son kullanımından itibaren ne kadar süredir kullanılmadığını döndürür.
+
+Redis, bellek yönetimi için bir tembellik (idling) mekanizması kullanır. Bir anahtarın son kullanımından itibaren belli bir süre geçtikten sonra, 
+Redis bellekten bu anahtarı kaldırır. OBJECT IDLETIME komutu, bir anahtarın son kullanımından bu yana geçen süreyi döndürür. 
+Bu, bir anahtarın ne kadar süredir kullanılmadığını gösterir ve bellek yönetimini anlamak için kullanışlıdır.
+
+Örneğin, OBJECT IDLETIME hello komutu, hello adlı bir anahtarın son kullanımından bu yana geçen süreyi döndürür. 
+Eğer bu süre, Redis'in konfigürasyon dosyasındaki timeout ayarından daha fazla ise, Redis bu anahtarı bellekten kaldırır.
+
+Bu komut, Redis'in bellek yönetimini anlamak ve gereksiz bellek kullanımını önlemek için kullanışlıdır. 
+Özellikle, uzun süre kullanılmayan anahtarları tespit etmek ve gereksiz bellek kullanımını önlemek için kullanışlıdır.
+
 object idletime hello1
 
 lpush fruits "banana"
@@ -104,6 +133,18 @@ set name "Joe"
 get name
 
 dump name
+
+belirtilen anahtarın değerini, Redis'in dahili protokolü kullanarak, bir dize (string) olarak döndürür.
+
+Bu komut, bir anahtarın değerini yedeklemek ve başka bir yerde yeniden kullanmak için kullanışlıdır. 
+Örneğin, DUMP name komutu, name adlı bir anahtarın değerini bir dize olarak döndürür. 
+Daha sonra, bu dizeyi başka bir Redis sunucusuna veya başka bir yerdeki başka bir programda kullanarak, name anahtarının değerini geri yükleyebilirsiniz.
+
+DUMP komutunun çıktısı, Redis protokolünü kullanan özel bir dizedir. Bu dize, RESTORE komutu kullanılarak yeniden yüklenebilir. 
+RESTORE komutu, DUMP komutu tarafından üretilen özel bir dizeyi alır ve onu belirtilen bir anahtarın değeri olarak atar.
+
+Bu komut, Redis'te yedekleme ve geri yükleme işlemleri yapmak için kullanışlıdır. 
+Ancak, çok büyük anahtar değerleri için yavaş çalışabilir ve bu nedenle, çok büyük verileri yedeklemede tercih edilmeyebilir.
 
 restore name 0 <paste code for key: name >
 
