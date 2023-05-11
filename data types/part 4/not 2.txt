@@ -17,13 +17,15 @@ zadd users:followers 1 John 100 David
 zrange users:followers 0 -1 withscores
 
 zrange users 0 0
-//ilk elemanı verir
+//0.indeksten itibaren 0.indekse kadar olan elemanları görüntüler.
+//yani ilk elemanı verir
 
 zrange users -1 -1
 //son elemanı verir.
 
 zrange users 0 0 rev
 //son elemanı verir
+//normalde zrange users 0 0 ilk elemanı verir. fakat rev parametresi reverse sıralama yapar.
 
 zrevrange users:followers 0 -1
 //zrevrange komutuyla elemanları sondan başlayarak listelenir
@@ -34,12 +36,12 @@ zrevrange users:followers 0 -1 withscores
 ************************************************************************************************
 
 zincrby users:followers 5 adam
-//zincrby komutu bir elemanın score bilgisini arttırmak için kullanılır (6 adam)
+//zincrby komutu bir elemanın score bilgisini arttırmak için kullanılır (15 adam)
 
 zrange users:followers 0 -1 withscores
 
 zincrby users:followers -5 scott
-//negatif değer verildği için elemanın değeri azaltılacaktır(1 adam)
+//negatif değer verildği için elemanın değeri azaltılacaktır(10 adam)
 
 zrange users:followers 0 -1 withscores
 
@@ -62,6 +64,7 @@ zadd num3:ss 1 a 2 b 3 c 4 ca
 zrange num3:ss 0 -1 withscores
 
 zrevrange num3:ss 0 -1 withscores
+//zrevrange komutu tersten sıralama yapar.
 
 ************************************************************************************************4
 //rank starts with 0
@@ -98,8 +101,8 @@ zinter 2 kume1 kume2
 zinterstore kesisim_kume 2 kume1 kume2
 //kume1 ve kume2 isimli 2 elemanın kesişimini kesisim_kume isismli kumeye aktarır.
 
-zadd myset key1 val1
-zadd myset key2 val2
+zadd myset 1 val1
+zadd myset 2 val2
 zcard myset
 //myset isimli sıralı küme içindeki eleman sayısını verir.
 
