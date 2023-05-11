@@ -129,6 +129,7 @@ zintercard mykume1 mykume2
 //mykume1 ve mykume2 isimli sıralı kümenin kesişen elemanların sayısını getirir.
 
 zpopmax products
+//products adlı bir sıralı kümeden en yüksek puanlı öğeyi kaldırır ve geri döndürür. Eğer kümede hiç eleman yoksa nil döndürür.
 
 zpopmax mykume1 1
 //mykume1 isimli kümeden en yüksek skora sahip elemanı kaldırır.
