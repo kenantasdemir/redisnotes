@@ -4,7 +4,7 @@ geoadd sehirler 28.9784 41.0082 istanbul
 geoadd sehirler 28.9784 41.0082 istanbul 32.8594 39.9334 ankara
 //coklu bir sekilde eleman eklenmek istenirse boylam enlem ve sehir bilgisi eklenmelidir.
 
-geopost sehirler istanbul ankara
+geopos sehirler istanbul ankara
 //istanbul ve ankara sehirlerinin boylam ve enlem değerlerini verir.
 
 geohash sehirler istanbul ankara
