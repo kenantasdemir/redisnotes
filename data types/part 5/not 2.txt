@@ -83,8 +83,9 @@ hexists user:101 fname1
 
 hmget user:101 fname lname
 
-hmexists user:101 name
+hexists user:101 name
 //name fieldı var mı yok mu kontrol eder
+//varsa true yoksa false döner
 
 #############################################################################################3
 
@@ -145,7 +146,7 @@ hrandfield user:101 -2
 
 
 hrandfield user:101 2 withvalues
-//user:101 isimli hash içerisinden 2 adet eşsiz fieldı değerleriyle birlikte getirir.
+//user:101 isimli hash içerisinden 2 adet farklı fieldı değerleriyle birlikte getirir.
 
 hrandfield user:101 -2 withvalues
 //user:101 isimli hash içerisinden 2 adet fieldı değerleriyle birlikte getirir.
