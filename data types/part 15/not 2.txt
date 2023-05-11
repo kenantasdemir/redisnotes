@@ -4,5 +4,29 @@ info everything
 
 role
 
+INFO komutu, Redis sunucusunun hakkında bilgi veren istatistiksel bilgilerini döndürür. 
+Bu bilgiler, sunucunun sistem bilgileri, kullanım istatistikleri, ağ bağlantıları ve diğer birçok konuda detaylı bilgi içerebilir.
+
+INFO komutu, ayrıca farklı parametrelerle de kullanılabilir:
+
+INFO all: Redis sunucusunun tüm bilgilerini döndürür. Bu parametre, Redis sunucusu hakkında mümkün olan en kapsamlı bilgiyi sağlar.
+
+INFO server: Redis sunucusunun sistem bilgilerini döndürür.
+
+INFO clients: Redis sunucusuna bağlı istemci sayısı ve bağlantı bilgileri gibi istemci istatistiklerini döndürür.
+
+INFO memory: Redis sunucusunun bellek kullanımı hakkında istatistikler döndürür.
+
+INFO persistence: Redis sunucusunun veri depolama durumu hakkında bilgi sağlar.
+
+INFO replication: Redis sunucusunun replikasyon durumu hakkında bilgi sağlar.
+
+INFO stats: Redis sunucusunun çalışma zamanı istatistikleri döndürür.
+
+INFO modules: Redis sunucusunda yüklü olan modüllere ilişkin bilgi döndürür.
+
+ROLE komutu ise Redis sunucusunun rolünü (master veya slave) ve diğer replikasyon bilgilerini döndürür. Bu komut, bir Redis sunucusunun rolünü tespit etmek ve diğer Redis sunucularıyla çalışma şeklini belirlemek için kullanışlıdır. Özellikle, bir Redis kümesi kurmak veya bir yük dengeleyiciye bağlamak için kullanışlıdır.
+
+
 master sunucu hem okuma hem de yazma iznine sahiptir
 slave ise sadece okuma iznine sahiptir.
