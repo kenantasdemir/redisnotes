@@ -2,6 +2,20 @@ redis-server
 
 redis-cli
 shutdown nosave
+
+
+shutdown nosave now
+//bu komut çalıştırıldığında servera bağlantıyı hemen kapatması için istek gönderilir.
+
+set key1 value1 ex 120 nx GET
+
+PEXPIRE myKey 100
+myKey anahtarına 100 milisaniye (0.1 saniye) sonra sona ermesi için bir süre atanı
+
+
+
+
+
 info
 info memory
 info stats
