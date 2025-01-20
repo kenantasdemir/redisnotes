@@ -1,0 +1,228 @@
+CODE: Grouping with multiple reduce functions SUM, AVG
+
+ft.aggregate idx:movie "*" groupby 1 @category
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies reduce sum 1 votes
+
+hgetall movie:1   
+
+ft.info idx:movie
+ft.alter idx:movie schema add votes numeric sortable
+ft.info idx:movie
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies reduce sum 1 votes
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies reduce sum 1 votes as total_votes
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies reduce sum 1 votes as total_votes reduce avg 1 @rating
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies reduce sum 1 votes as total_votes reduce avg 1 rating
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies reduce sum 1 votes as total_votes reduce avg 1 rating as avg_rating
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies reduce sum 1 votes as total_votes reduce avg 1 rating as avg_rating sortby 1 @rating
+hgetall movie:1
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies reduce sum 1 votes as total_votes reduce avg 1 rating as avg_rating sortby 1 @avg_rating
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies reduce sum 1 votes as total_votes reduce avg 1 rating as avg1_rating sortby 1 @avg_rating
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies reduce sum 1 votes as total_votes reduce avg 1 rating as avg_rating sortby 1 @avg_rating
+
+
+
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies reduce sum 1 votes as total_votes reduce avg 1 rating as avg_rating sortby 1 @avg_rating DESC
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies reduce sum 1 votes as total_votes reduce avg 1 rating as avg_rating sortby 4 @avg_rating DESC @total_votes desc
+ft.aggregate idx:movie "*" groupby 1 @category reduce count 0 as count_of_movies reduce sum 1 votes as total_votes reduce avg 1 rating as avg_rating sortby 4 @total_votes desc @avg_rating DESC
+
+hgetall actor:1
+
+hgetall user:1
+
+ft.aggregate idx:user "*" groupby 1 @country reduce count 0 as num_of_users
+ft.aggregate idx:user "*" groupby 1 @country reduce count 0 as num_of_users sortby 2 @num_of_users DESC
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as num_of_users sortby 2 @num_of_users DESC
+ft.aggregate idx:user "@gender:{male}" groupby 1 @country reduce count 0 as num_of_users sortby 2 @num_of_users DESC
+
+
+
+##############################################################################################################################################################
+
+
+CODE: Transforming aggregated data using APPLY function
+hgetall user:1
+
+ft.aggregate idx:user "*" groupby 1 @last_login
+ft.aggregate idx:user "*" apply year(@last_login) as year groupby 1 @last_login
+ft.aggregate idx:user "*" apply year(@last_login) as year groupby 1 @year
+ft.aggregate idx:user "*" apply year(@last_login) as year apply dayofmonth(@last_login) as month groupby 1 @year
+ft.aggregate idx:user "*" apply year(@last_login) as year apply dayofmonth(@last_login) as month groupby 2 @year @month
+ft.aggregate idx:user "*" apply year(@last_login) as year apply monthofyear(@last_login) as month groupby 2 @year @month
+ft.aggregate idx:user "*" apply year(@last_login) as year apply monthofyear(@last_login) as month groupby 2 @year @month reduce count 0
+ft.aggregate idx:user "*" apply year(@last_login) as year apply monthofyear(@last_login) as month groupby 2 @year @month reduce count 0 as count_user_logins
+ft.aggregate idx:user "*" apply year(@last_login) as year apply "monthofyear(@last_login) + 1" as month groupby 2 @year @month reduce count 0
+ft.aggregate idx:user "*" apply year(@last_login) as year apply "monthofyear(@last_login) + 1" as month groupby 2 @year @month reduce count 0 as count_user_logins
+ft.aggregate idx:user "*" apply year(@last_login) as year apply "monthofyear(@last_login) + 1" as month groupby 2 @year @month reduce count 0 as count_user_logins sortby 1 @year
+ft.aggregate idx:user "*" apply year(@last_login) as year apply "monthofyear(@last_login) + 1" as month groupby 2 @year @month reduce count 0 as count_user_logins sortby 1 @year DESC
+ft.aggregate idx:user "*" apply year(@last_login) as year apply "monthofyear(@last_login) + 1" as month groupby 2 @year @month reduce count 0 as count_user_logins sortby 2 @year DESC @month ASC
+ft.aggregate idx:user "*" apply year(@last_login) as year apply "monthofyear(@last_login) + 1" as month groupby 2 @year @month reduce count 0 as count_user_logins sortby 4 @year DESC @month ASC
+
+##############################################################################################################################################################
+
+
+CODE: APPLY Function with date transformation
+
+ft.aggregate idx:user "*" groupby 1 @last_login
+ft.aggregate idx:user "*" apply dayofweek(@last_login) as dayofweek groupby 1 @last_login
+ft.aggregate idx:user "*" apply dayofweek(@last_login) as dayofweek groupby 1 @dayofweek
+ft.aggregate idx:user "*" apply dayofweek(@last_login) as dayofweek groupby 1 @dayofweek reduce count 0
+ft.aggregate idx:user "*" apply dayofweek(@last_login) as dayofweek groupby 1 @dayofweek reduce count 0 as count_week_user_logins
+ft.aggregate idx:user "*" apply dayofweek(@last_login) as dayofweek groupby 1 @dayofweek reduce count 0 as count_week_user_logins sortby 1 @dayofweek
+ft.aggregate idx:user "*" apply dayofweek(@last_login) as dayofweek groupby 1 @dayofweek reduce count 0 as count_week_user_logins sortby 1 @count_week_user_logins DESC
+ft.aggregate idx:user "*" apply dayofweek(@last_login) as dayofweek groupby 1 @dayofweek reduce count 0 as count_week_user_logins sortby 2 @count_week_user_logins DESC
+
+ft.aggregate idx:user "*" apply "dayofweek(@last_login)+1" as dayofweek groupby 1 @dayofweek reduce count 0 as count_week_user_logins sortby 2 @count_week_user_logins DESC
+ft.aggregate idx:user "*" apply "dayofweek(@last_login)+1" as dayofweek groupby 1 @dayofweek reduce count 0 as count_week_user_logins sortby 1 @dayofweek ASC
+ft.aggregate idx:user "*" apply "dayofweek(@last_login)+1" as dayofweek groupby 1 @dayofweek reduce count 0 as count_week_user_logins sortby 2 @dayofweek ASC
+
+
+##############################################################################################################################
+
+CODE: Using FILTER to filter data
+
+ft.aggregate idx:user "@gender:{female}"
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females sortby 1 @count_females
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females sortby 1 @count_females desc
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females sortby 2 @count_females DESC
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females sortby 2 @count_females DESC
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females filter "@country !='china'" sortby 2 @count_females DESC
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females filter "@country !='china' && @count_females > 100" sortby 2 @count_females DESC
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females filter "@country !='china' && @count_females > 150" sortby 2 @count_females DESC
+
+
+##############################################################################################################################
+
+CODE: Filter on resultsets
+
+
+ft.aggregate idx:user * apply year(@last_login) as year apply monthofyear(@last_login) as monthof year groupby 2 @year @monthofyear
+reduce count 0 as count_logins_per_month
+
+
+ft.aggregate idx:user * apply year(@last_login) as year apply monthofyear(@last_login) as monthof year groupby 2 @year @monthofyear
+reduce count 0 as count_logins_per_month sortby 2 @monthofyear asc
+
+
+ft.aggregate idx:user * apply year(@last_login) as year apply "monthofyear(@last_login)+1" as monthof year groupby 2 @year @monthofyear
+reduce count 0 as count_logins_per_month sortby 2 @monthofyear asc
+
+ft.aggregate idx:user * apply year(@last_login) as year apply "monthofyear(@last_login)+1" as monthof year groupby 2 @year @monthofyear
+reduce count 0 as count_logins_per_month filter "@year==2020" sortby 2 @monthofyear asc
+
+ft.aggregate idx:user * apply year(@last_login) as year apply "monthofyear(@last_login)+1" as monthof year groupby 2 @year @monthofyear
+reduce count 0 as count_logins_per_month filter "@year==2020" sortby 2 @count_logins_per_month asc
+
+
+ft.aggregate idx:user "@gender:{female}"
+
+ft.aggregate idx:user * apply year(@last_login) as year apply monthofyear(@last_login) as monthof year groupby 2 @year @monthofyear
+reduce count 0 as count_logins_per_month
+
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females sortby 1 @count_females
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females sortby 1 @count_females desc
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females sortby2 @count_females DESC
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females sortby 2 @count_females DESC
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females filter "@country !='china'" sortby 2 @count_females DESC
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females filter "@country !='china' && @count_females > 100" sortby 2 @count_females DESC
+ft.aggregate idx:user "@gender:{female}" groupby 1 @country reduce count 0 as count_females filter "@country !='china' && @count_females > 150" sortby 2 @count_females DESC
+
+##############################################################################################################################
+
+
+
+CODE: Numerical Conditions
+ft.search idx:movie "@release_year:[1995 1995]" return 2 movie_name release_year
+
+ft.search idx:movie "@release_year:[1995 2000]" return 2 movie_name release_year
+
+ft.search idx:movie "@release_year:[1999 2000]" return 2 movie_name release_year
+
+ft.search idx:movie "@release_year:[2000 +inf]" return 2 movie_name release_year
+
+ft.search idx:movie "@release_year:[2014 +inf]" return 2 movie_name release_year
+
+ft.search idx:movie "@release_year:[(2014 +inf]" return 2 movie_name release_year
+
+ft.search idx:movie "@release_year:[-inf (2014]" return 2 movie_name release_year
+
+ft.search idx:movie "@release_year:[-inf 2014]" return 2 movie_name release_year
+
+
+##############################################################################################################################
+
+CODE: Create custom indexes via FILTER
+
+ft.create idx:movie:drama on hash prefix 1 "movie:" filter "@category=='Drama' && @release_year >=1990 && @release_year < 2000" 
+schema movie_name text sortable release_year numeric sortable
+
+ft._list
+ft.info idx:movie:drama
+ft.search idx:movie:drama "*"
+ft.search idx:movie:drama "*" return 2 movie_name release_year
+ft.search idx:movie:drama "@release_year:{2000}" return 2 movie_name release_year
+ft.search idx:movie:drama "@release_year:{1999}" return 2 movie_name release_year
+ft.search idx:movie:drama "@release_year:[1995 2000]" return 2 movie_name release_year
+ft.search idx:movie:drama "@release_year:[1995 2000]" return 2 movie_name release_year limit 0 100
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
