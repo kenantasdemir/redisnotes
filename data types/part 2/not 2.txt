@@ -278,6 +278,39 @@ lrange orders:pending 0 -1
 lrange orders:completed 0 -1
 
 
+LPOP mylist
+--soldan ilk elemanı silver
+
+LPOP mylist 2
+Soldat iki elemanı siler
+
+LPUSHX myotherlist "Hello"
+//liste varsa ekler
+
+
+LREM list -2 "hello"
+--listenin sonundaki 2 "hello" ifadesiini siler.
+
+LTRIM mylist 1 -1
+-- 1.indeksteki eleman ve son eleman arasındaki elemanları saklar geri kalanı siler
+-- bu örnekte 0.indeksteki eleman silinecek
+
+RPUSH mylist "one" "two" "three" "four" "five"
+RPOP mylist
+
+RPOP mylist 2
+RPOPLPUSH mylist myotherlist
+//source listenin sağından bir eleman çıkarır ve destination listenin soluna ekler.
+
+
+
+RPUSHX myotherlist "World"
+--liste Hali hazırda mevcut ise çalışır
+
+
+
+
+
 
 
 
