@@ -232,6 +232,144 @@ redis-cli -u $URL
 
 
 
+set name1 1
+
+set name2 2
+
+set name3 e
+
+set name4 4
+
+debug populate 50
+
+redis-cli --scan
+
+redis-cli --scan --pattern '*'
+
+redis-cli --scan --pattern 'k*'
+
+redis-cli --scan --pattern '*key*'
+
+redis-cli --scan --pattern '*name*'
+
+redis-cli --scan --pattern '*' > keys.csv
+
+cat keys.csv
+
+redis-cli -h
+
+#################################################################################################################
+
+
+
+URL=redis://localhost:6379
+
+echo "KEYS *" | \
+
+redis-cli -u $URL | \
+
+sed 's/^/GET /' | \
+
+redis-cli -u $URL
+
+#################################################################################################################
+
+
+creating replicas
+
+redis-cli --cluster create 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 
+127.0.0.1:7004 127.0.0.1:7005 127.0.0.1:7006 --cluster-replicas 1
+
+#################################################################################################################
+
+
+redis-cli --cluster check 127.0.0.1:7001
+
+redis-cli -p 7001 cluster
+
+redis-cli -p 7001 cluster nodes
+
+exists fname lname
+
+set 1  hello ex 120
+
+ttl 1
+
+expire 1 10
+
+ttl 1
+
+set 1 hello px 1000
+
+ttl 1
+
+pttl 1
+
+get 1
+
+set 1 hello px 100000
+
+pttl 1
+
+ttl 1
+
+expire 1 10
+
+set 1 hello px 1000000
+
+pttl 1
+
+pexpire 1 100
+
+pttl 1
+
+
+
+set k1 v1
+
+set k2 v2
+
+get k1
+
+get k2
+
+renamenx k1 k2
+
+get k1
+
+get k2
+
+renamenx k1 k3
+
+get k1
+
+get k3
+
+CODE: Deleting Keys Asynchronously via UNLINK
+set k1 v1
+
+set k2 v2
+
+del k1 k2
+
+set k1 v1
+
+set k2 v2
+
+unlink k1 k2
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
