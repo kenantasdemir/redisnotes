@@ -140,6 +140,124 @@ zpopmax mykume1 5
 
 
 
+ZCARD myzset
+
+ZCOUNT mysortedset 3 5
+--score değeri 3 ile 5 arasındaki öğeleri sayısını verir.:
+
+
+ZDIFF 2 zset1 zset2
+--verilen setler arasındaki farkları listeler
+
+ZDIFF 2 zset1 zset2 WITHSCORES
+--verilen setler arasındaki farkları scorelarıyla listeler
+
+ZDIFFSTORE out 2 zset1 zset2
+--iki set arasındaki farkı out adlı sete aktarır.
+
+ZINCRBY myzset 2 "one"
+--one değerine sahip elemanın skorunu 2 arrttırır.
+
+ZINTER 2 zset1 zset2 WITHSCORES
+
+ZINTERCARD 2 zset1 zset2 LIMIT 1
+
+ZINTERSTORE out 2 zset1 zset2 WEIGHTS 2 3
+//zset1 2 ile zset2 3 ile çarpılır
+//kesişen elamanların skorları toplanır.
+
+
+ZLEXCOUNT key min max
+zlexcount myzset (a [z
+--alfabetik sıralama yapar. Sayıları da dahil eder.
+
+
+ZMPOP 2 myzset MIN
+--minimum skora sahip 2 elemanı çıkarır.
+
+ZMSCORE myzset "apple" "banana" "cherry" "date"
+--verilen öğelerin skorlarını sorgular
+
+ZPOPMAX myzset
+--verilen set içindeki en yüksek skor sahipp elemanı siler.
+
+ZPOPMIN myzset
+--verilen set içindeki en düşük skor sahipp elemanı siler.
+
+ZRANDMEMBER dadi -5 WITHSCORES
+
+
+ZRANGE zset (5 (10 BYSCORE
+
+ZRANGE zset 10 5 REV BYSCORE
+
+ZRANGEBYLEX myzset - [c
+//ilk karakterden c karakteri de dahil olmak üzere alfabetik sıralama yapar
+
+ZRANGEBYSCORE myzset 2 4
+//2 ve 4 elemanları arasında skora göre sıralama yapar
+
+ZRANGESTORE dstzset srczset 2 -1
+//2. indeksten son indexe kadar elemanları dstzset adlı sete aktarır
+
+
+ZRANK myzset "cherry"
+--verilen öğenin indeks değerini döndürür.
+
+ZREM myzset "two"
+
+ZREMRANGEBYLEX myzset [alpha [omega
+--alfabetik olarak siler
+
+ZREMRANGEBYRANK myzset 0 1
+--en düşük skorA sahip iki elemanı siler
+
+ZREMRANGEBYSCORE myzset -inf 4
+--skorları eksi sonsuz ile 4 arasında olan elemanları siler.
+
+ZREVRANGE myzset 0 -1
+--en yüksek skorten en düşük skor sıralar.
+
+ZREVRANGEBYLEX myzset [c -
+--Bu komut, öğelerin skorlarına değil, yalnızca üyelerinin alfabetik sıralamasına bakarak işlem yapar.
+-- c'den başlayarak a'ya kadar olan karakterleri siler.
+
+ZREVRANGEBYSCORE myzset +inf -inf
+--skorları yüksekten düşüğe sıralar.
+
+ZREVRANK stokcs:top AAPL
+--elemanları skorları yüksekten düşüğe olarak sıralar.
+-- AAPL elemanının indeks bilgisini sıralamaya sondan başlayarak verir.
+
+ZSCORE myzset "one"
+--verilen elemanın skorunu döndürür.
+
+ZUNION 2 zset1 zset2
+--verilen Setlerin kesişimini Duplikate eleman olmadan Döner
+
+ZUNIONSTORE out 2 zset1 zset2 WEIGHTS 2 3
+--kesişimdeki elemanları yeni Bir sete kaydeder.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
