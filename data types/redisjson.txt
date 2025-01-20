@@ -1,0 +1,195 @@
+docker run -p 6379:6379 --name redis-redisjson redislabs/rejson:latest
+redis-cli
+json.set foo . '{"*foo":"bar"}'
+json.get foo
+exit
+
+redis-cli --raw
+json.get foo
+
+json.type foo
+json.type .foo
+json.type foo .foo
+json.type foo
+json.type foo .foo
+json.set foo .test 1
+json.get foo
+json.type foo .test
+//foo adlı json içindeki test öğesinin türünü döner
+
+json.set user:101 . '{"name":"John"}'
+json.get user:101
+json.set user:101 .age 30
+json.get user:101
+json.type user:101 .age
+
+######################################################################################################################################
+
+json.get foo
+json.strlen foo
+json.type foo
+json.strlen foo .foo
+json.strlen user:101 .name
+json.strlen foo .test
+json.type foo .test
+json.strlen user:101
+json.get user:101
+json.strlen user:101 .name
+json.strappend foo .foo
+json.set name . '"John"'
+json.get name
+json.strlen name
+json.strappend name " Doe"
+json.strappend name '" Doe"'
+json.strappend user:101 name '" Tasdemir"'
+json.get name
+
+######################################################################################################################################
+
+
+json.get user:101
+json.strlen user:101
+json.objlen user:101
+json.objkeys user:101
+json.get foo
+json.objkeys foo
+json.get name
+json.objkeys name
+json.objlen name
+json.objkeys foo
+
+
+######################################################################################################################################
+
+json.set num . 0
+json.get num
+json.numincrby num . 1
+json.numincrby num . -1
+json.nummultby num . 20
+json.get user:101
+json.numincrby user:101 .age 2
+json.get user:101
+json.numincrby user:101 .age -2
+json.get user:101
+json.nummultby user:101 .age 2
+json.numincrby user:101 .age -30
+json.get user:101
+
+######################################################################################################################################
+
+json.set k1 . '"1"'
+json.get k1
+json.del k1
+
+json.set u1 . '[true,{"name":"John"},null]'
+json.get u1
+json.type u1
+
+json.get u1 [1]
+json.get u1 [1].name
+json.get u1 [0]
+json.get u1 [2]
+
+json.del u1 [-1]
+json.get u1
+json.del u1 [0]
+
+######################################################################################################################################
+
+jsob.debug memory user:101
+//byte cinsinden memory kullanımını döner
+
+json.debug memory foo
+json.get foo
+json.get user.101
+json.set emptystr . '""'
+json.debug memory emptystr
+json.set arr . '[]'
+json.debug memory arr
+
+json.set obj . '{}'
+json.debug memory obj
+
+json.set arr . '[""]'
+json.debug memory arr
+
+json.set arr . '["","",""]'
+json.debug memory arr
+
+json.clear foo
+// foo adlı jsonın içeriğini boşaltır.
+
+JSON.MSET doc1 $ '{"a":1}' doc2 $ '{"f":{"a":2}}' doc3 $ '{"f1":{"a":0},"f2":{"a":0}}'
+
+json.mget doc1 doc2 doc3 .
+
+JSON.FORGET foo
+
+JSON.SET item:1 $ '{"name":"Noise-cancelling Bluetooth headphones","description":"Wireless Bluetooth headphones with noise-cancelling technology","connection":{"wireless":true,"type":"Bluetooth"},"price":99.98,"stock":25,"colors":["black","silver"]}'
+
+JSON.ARRAPPEND item:1 $.colors '"blue"'
+
+JSON.ARRINSERT item:1 $.colors 2 '"yellow"' '"gold"'
+
+JSON.ARRLEN item:1 $.colors
+
+json.arrindex item:1 $.colors '"name"'
+
+json.arrpop item:1 $.[0].name
+
+JSON.ARRTRIM key $.[1].max_level 4 8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
