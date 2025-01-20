@@ -159,6 +159,44 @@ hkeys user:101
 
 
 
+NX
+XX
+GT
+LT
+
+--  HEXPIREAT
+
+HEXPIRETIME mykey FIELDS 2 field1 field2
+HMSET myhash field1 "Hello" field2 "World"
+HPERSIST mykey FIELDS 1 field2
+
+HPEXPIRE mykey 2000 FIELDS 2 field1 field2
+--ms cinsinden
+
+HPEXPIREAT mykey 1715704971000 FIELDS 2 field1 field2
+HPTTL mykey FIELDS 2 field1 field2
+HPEXPIRETIME mykey FIELDS 2 field1 field2
+
+
+HSCAN myhash 0 NOVALUES
+
+HSTRLEN myhash f1
+
+HTTL mykey FIELDS 3 field1 field2 field3
+
+
+Redis'teki scan komutları, verileri küçük 
+parçalara böler ve her seferinde sadece bir 
+kısmını döndürür, 
+bu da veritabanı üzerinde daha düşük yük 
+oluşturur.
+
+
+
+
+
+
+
 
 
 
