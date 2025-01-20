@@ -90,6 +90,71 @@ keys shop*
 get shop:101:name
 
 
+Setex mykey 30 "hello world"
+//30 saniye sonra expired olacak mykey adlı string oluşturur.
+
+Getex mykey ex 60
+//bir anahtarın değerini elde ederken expired olma süresini de değiştirdik.
+
+Getex mykey px 60
+
+SUBSTR mycustomkey 0 -1
+
+GETRANGE key 0 -1
+
+GETDEL mykey
+//mykey adlı stringin değerini yazdırdıktan sonra siler.
+
+GETSET mycounter "0"
+//mycounter değerini önce get sonra set eder.
+
+APPEND mykey "15"
+//stringin sonuna ifade ekler
+EXISTS mykey
+
+SET sayi "20"
+DECR sayi
+DECRBY sayi 3
+
+
+
+MSET key1 ohmytext key2 mynewtext
+LCS key1 key2
+//verilen iki string içinde birbirine benzeyen alt stringleri döner
+
+LCS key1 key2 LEN
+//birbirine benzeyen karakter sayısını döner
+
+MGET key1 key2
+MSET key1 "Cello" key2 "World"
+
+MSETNX key1 "Hello" key2 "there"
+PSETEX mykey 100000 "deneme"
+PTTL mykey
+
+//PSETEX, bir anahtarın değerini belirler ve bu anahtara milisaniye cinsinden bir süre tanımlar. 
+//Süre dolduğunda anahtar otomatik olarak silinir.
+
+
+SETNX key value
+(Set if Not Exists)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
