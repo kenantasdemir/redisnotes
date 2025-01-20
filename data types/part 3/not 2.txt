@@ -152,6 +152,86 @@ sdiffstore sum k1 k2 k3
 
 
 
+SDIFF key1 key2
+--Key1de olup key2de olmayan elemanları listeler.
+
+
+SINTER key1 key2
+--key1 ve key2 anahtarları üzerinde kesişen elemanları listeler.
+
+SINTERCARD 2 key1 key2
+--2 anahtarın kesişen elemanlarının sayısını döndürür.
+
+SINTERSTORE key key1 key2
+--kesişen elemanları key adlı anahtarda saklar
+
+SISMEMBER myset "one"
+
+SMEMBERS key
+
+SMISMEMBER myset "one" "notamember"
+
+SMOVE myset myotherset "two"
+
+SPOP myset
+--random eleman siler
+
+SPOP myset 3
+--random 3 eleman siler.
+
+SRANDMEMBER myset
+--random eleman Döner
+
+SRANDMEMBER myset 3
+--random 3 eleman Döner
+
+SREM myset "one"
+
+SUNION key1 key2
+--key1 ve key2 adlı anahtarlar üzerindeki elemanları duplicate eleman olmadan birleştirir.
+
+SUNIONSTORE key key1 key2
+--key1 ve key2 adlı anahtarlar üzerindeki elemanları duplicate eleman olmadan birleştirir ve key adlı anahtara yazar.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
