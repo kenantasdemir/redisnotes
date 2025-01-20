@@ -83,6 +83,7 @@ getrange website 0 0
 
 getrange website 0 2
 getrange website 0 3
+--sıfır ve üçüncü indeksler arasındaki veriyi getirir.
 getrange website 0 4
 getrange website 5 13
 getrange website 0 100
