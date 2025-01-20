@@ -6,6 +6,15 @@ get key1
 
 select 1
 
+select 1
+//veritabanını değiştirmek için kullanılır
+//redis birden fazla veritabanı destekler
+//kaç db kullanılacağı redis.conf dosyasında databases 15 olarak belirtilir.
+get key1
+
+//bir keye birden fazla value atanabilir
+
+
 set key1 value2
 get key1
 
