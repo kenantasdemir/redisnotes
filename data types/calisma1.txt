@@ -1,0 +1,143 @@
+info server
+clear
+
+set name "John"
+get name
+
+set name "Suzy" GET
+get name
+
+set name1 "John" GET
+
+set key value ex 5000
+ttl key
+
+set key value px 500000
+ttl key
+
+set discountCoupon tomorrow exat 1625861430
+get discountCoupon
+ttl discountCoupon
+
+################################################################################################################################3
+
+
+set k1 v1
+get k1
+del k1
+
+set onetime 1
+getdel onetime
+get onetime
+
+set app:config:welcomeScreen 1
+getdel app:config:welcomeScreen
+
+set app:config:is_language_updated 1
+getdel app:config:is_language_updated
+
+
+set limitedoffer 1
+getex limitedoffer ex 7200
+ttl limitedoffer
+
+
+################################################################################################################################3
+
+hkeys user:101
+hrandfield user:101
+
+hrandfield user:101 1
+hrandfield user:101 2
+
+hrandfield user:101 -2
+
+
+hrandfield user:101 2 withvalues
+hrandfield user:101 -2 withvalues
+
+hkeys user:101
+
+################################################################################################################################3
+
+smembers winninglot
+sadd winninglot 20 34 57 2 8 9
+
+sismember winninglot 20
+
+smismember winninglot 1 2 3 20 34
+
+smembers topstocks
+sadd topstocks "AAPL" "AMZN" "TSLA"
+sismember topstocks "AAPL"
+smismember topstocks "AAPL" "MSFT" "GE" "C" "NIO"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
