@@ -1,0 +1,47 @@
+debug populate 50
+keys *
+
+scan 0
+scan 2
+scan 14
+scan 21
+scan 59
+scan 0
+
+scan 222
+scan 0
+scan 0 count 15
+scan 6 count 15
+scan 21 count 15
+scan 15 count 15
+
+scan 0 match *
+scan 0 match *key:?
+scan 2 match *key:?
+scan 14 match *key:?
+
+type key:1
+set hello 1
+type hello
+scan 0 type string
+scan 0 count 10 type string 
+scan 0 match *h* type string
+keys *
+
+scan 0 match *h* type string
+scan 2 match *h* type string
+scan 14 match *h* type string
+
+scan 0 match *h* type string count 10
+scan 0 match *h* type string count 20
+scan 0 match *h* type string count 21
+scan 0 match *h* type string count 30
+
+geoadd geokey 0 0 value
+type geokey
+
+scan 0 type zset
+
+//production ortamında key yerine scan kullan
+
+
