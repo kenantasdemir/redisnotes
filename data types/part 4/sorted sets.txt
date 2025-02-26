@@ -173,6 +173,7 @@ zlexcount myzset (a [z
 
 
 ZMPOP 2 myzset MIN
+zmpop 2 stocks:top user:followers MIN
 --minimum skora sahip 2 elemanı çıkarır.
 
 ZMSCORE myzset "apple" "banana" "cherry" "date"
