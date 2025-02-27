@@ -284,8 +284,6 @@ LPOP mylist
 LPOP mylist 2
 Soldat iki elemanı siler
 
-LPUSHX myotherlist "Hello"
-//liste varsa ekler
 
 
 LREM list -2 "hello"
@@ -303,6 +301,8 @@ RPOPLPUSH mylist myotherlist
 //source listenin sağından bir eleman çıkarır ve destination listenin soluna ekler.
 
 
+LPUSHX myotherlist "Hello"
+//liste varsa ekler
 
 RPUSHX myotherlist "World"
 --liste Hali hazırda mevcut ise çalışır
