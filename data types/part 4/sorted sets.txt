@@ -125,7 +125,7 @@ zscore mykume "one"
 zmscore mykume "one" "two" "three"
 //verilen elemanların skor bilgisini verir.
 
-zintercard mykume1 mykume2
+zintercard 2 mykume1 mykume2
 //mykume1 ve mykume2 isimli sıralı kümenin kesişen elemanların sayısını getirir.
 
 zpopmax products
