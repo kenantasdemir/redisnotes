@@ -47,8 +47,10 @@ json.set truck:1 .special_menu false
 json.del truck:1 .special_menu
 
 json.arrpop truck:1 .menu 1
+//1. indeksteki elemanı siler
 
 json.arrinsert truck:1 .menu 0 '{"item": "Sushi", "price": 4}'
+//0. indeksten itibaren belirtilen elemanları ekler.
 
 
 
