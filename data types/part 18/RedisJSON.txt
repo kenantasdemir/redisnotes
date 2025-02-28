@@ -51,7 +51,7 @@ docker run -p 6379:6379 --name redis-redisjson redislabs/rejson:latest
 
 redis-cli
 
-json.set myobje . "{'*foo':'bar'}"
+json.set myobje . '{"*foo":"bar"}'
 //myobje adında bir JSON nesnesi oluşturuldu.
 //. işareti path bilgisini belirtir. bu işaret oanki dizini işaret eder.
 
@@ -105,8 +105,6 @@ json.type user:101 .age
 ######################################################################################################################################
 
 json.get myobje
-json.strlen myobje
-//burada hata verecek çünkü myobje adlı öğre bir objedir ve objelerin uzunlukları strlen ile alınamaz.
 
 json.type myobje
 
@@ -121,15 +119,11 @@ json.get user:101
 json.strlen user:101 .name
 //user:101 isimli anahtarın içinde bulunan name alanının uzunluğunu verir.
 
-json.strappend myobje .foo
-//bu hatalı bir kullanım çünkü string tutulan yere obje eklenmeye çalışıyor.
 
 json.set name . '"John"'
 json.get name
 json.strlen name
 
-json.strappend name " Doe"
-//bu kullanım hatalı çift tırnağın dışına tek tırnak eklenmeli
 
 json.strappend name '" Doe"'
 json.get name
@@ -146,17 +140,17 @@ jsob.objkeys user:101
 //obje içindeki anahtarları verir.
 
 json.get myobje
-jsob.objkeys foo
+json.objkeys foo
 
 json.get name
 
-jsob.objkeys name
+json.objkeys name
 //bu kullanım hatalı obje beklerken string aldı.
 
-jsob.objlen name
+json.objlen name
 //bu kullanım hatalı obje beklerken string aldı.
 
-jsob.objkeys myobje
+json.objkeys myobje
 //obje içindeki keyleri verir.
 
 
@@ -164,6 +158,8 @@ jsob.objkeys myobje
 
 json.set num . 0
 json.get num
+
+json.numincrby myobje .test 1
 
 json.numincrby num . 1
 //her çalışmada num anahtarına karşılık gelen değeri 1 arttırır.
