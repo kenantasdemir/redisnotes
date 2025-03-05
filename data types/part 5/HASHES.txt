@@ -165,6 +165,7 @@ GT
 LT
 
 --  HEXPIREAT
+HEXPIREAT user 42354353452 NX FIELDS 2 name city
 
 HEXPIRETIME mykey FIELDS 2 field1 field2
 HMSET myhash field1 "Hello" field2 "World"
