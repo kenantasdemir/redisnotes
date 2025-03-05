@@ -135,6 +135,8 @@ JSON.ARRLEN item:1 $.colors
 
 json.arrindex item:1 $.colors '"name"'
 
+json.arrindex arr . null
+
 json.arrpop item:1 $.[0].name
 
 JSON.ARRTRIM key $.[1].max_level 4 8
