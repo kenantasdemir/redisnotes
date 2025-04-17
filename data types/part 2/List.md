@@ -43,7 +43,7 @@ lrange dept -3 -1
 
 lrange dept 0 -1
 
-lindex dept 0
+<b><mark>lindex dept 0</mark></b><br>
 //dept isimli listenin 0.indeksindeki elemanı getirir.
 
 lindex dept 1
@@ -95,7 +95,7 @@ linsert dept before 0 "Test"
 //-1 (eklemedi)
 
 
-linsert dept after "Sales" "Social"
+<b><mark>linsert dept after "Sales" "Social"</mark></b><br>
 //dept isimli listede Sales değerinden sonra Social elemanını eklemek için kullanılır.
 
 lrange dept 0 -1
