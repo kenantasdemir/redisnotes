@@ -121,7 +121,7 @@ get name2
 set num 1
 get num
 
-expire num 10
+<b><mark>expire num 10</mark></b><br>
 //key değeri ve karşılık gelen string ifade 10 saniye sonra silinecek
 
 ttl num
@@ -174,7 +174,7 @@ strlen mykey
 //anahtara karşılık gelen değerin uzunluğunu dönderir.
 
 set mykey "this is a long string defined for redis databasae structure"
-object encoding mykey
+<b><mark>object encoding mykey</mark></b><br>
 //mykey isimli anahtarın depolama türünü ve yapısı hakkında bilgi verir.
 
 
