@@ -24,7 +24,8 @@ Caching
 •With the help of expiry, set commands caching can be possible
 
 
-set otp:use_100 12345 ex 120
+<b><mark>set otp:use_100 12345 ex 120</mark></b><br>
+//120 saniye sonra expired olacak
 get otp:user_100
 ttl otp:user_100
 type otp:use_100
@@ -90,25 +91,25 @@ keys shop*
 get shop:101:name
 
 
-Setex mykey 30 "hello world"
+<b><mark>Setex mykey 30 "hello world"</mark></b><br>
 //30 saniye sonra expired olacak mykey adlı string oluşturur.
 
-Getex mykey ex 60
+<b><mark>Getex mykey ex 60</mark></b><br>
 //bir anahtarın değerini elde ederken expired olma süresini de değiştirdik.
 
-Getex mykey px 60
+<b><mark>Getex mykey px 60</mark></b><br>
 
-SUBSTR mycustomkey 0 -1
+<b><mark>SUBSTR mycustomkey 0 -1</mark></b><br>
 
-GETRANGE key 0 -1
+<b><mark>GETRANGE key 0 -1</mark></b><br>
 
-GETDEL mykey
+<b><mark>GETDEL mykey</mark></b><br>
 //mykey adlı stringin değerini yazdırdıktan sonra siler.
 
-GETSET mycounter "0"
+<b><mark></mark></b><br>
 //mycounter değerini önce get sonra set eder.
 
-APPEND mykey "15"
+<b><mark>APPEND mykey "15"</mark></b><br>
 //stringin sonuna ifade ekler
 EXISTS mykey
 
@@ -116,13 +117,16 @@ SET sayi "20"
 DECR sayi
 DECRBY sayi 3
 
+INCR sayi
+INCRBY sayi 5
+
 
 
 MSET key1 ohmytext key2 mynewtext
 LCS key1 key2
 //verilen iki string içinde birbirine benzeyen alt stringleri döner
 
-LCS key1 key2 LEN
+<b><mark>LCS key1 key2 LEN</mark></b><br>
 //birbirine benzeyen karakter sayısını döner
 
 MGET key1 key2
