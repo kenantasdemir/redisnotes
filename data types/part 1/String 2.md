@@ -1,9 +1,9 @@
-set key val exat 1624737950
+<b><mark>set key val exat 1624737950</mark></b><br>
 //timestamp cinsinden expiration süresi verildi.
 tll key
 //anahtarın expire olma süresini görüntüler.
 
-set key1 val1 px 10000
+<b><mark>set key1 val1 px 10000</mark></b><br>
 //10000 ms saniye expire olacak.
 
 set key2 val2 ex 60
@@ -13,7 +13,7 @@ set key2 val2 ex 60
 flushdb 
 //tüm key value çiftlerini siler.
 
-set key1 val1 keepttl
+<b><mark>set key1 val1 keepttl</mark></b><br>
 //keepttl parametresi sayesinde bir anahtarın sona erme süresini değiştirebiliriz.
 
 xx --> if it present
@@ -36,8 +36,6 @@ decr mykey
 
 incrbyfloat mykey -.3
 //mykey adlı anahtarın değerini 3/10 azaltır.
-
-
 
 
 set score 10
@@ -83,7 +81,6 @@ type num
 
 incrby num 1
 
-
 incrbyfloat num 1
 incrbyfloat num 1.2
 //key değeri 1.2 artacak
@@ -91,9 +88,7 @@ incrbyfloat num 1.2
 decrbyfloat num 0.5
 //key değeri 0.5 azalacak
 
-
 incrbyfloat num -0.5
-
 
 set app:fees:cc 1.0
 incrbyfloat app:fees:cc 0.2
