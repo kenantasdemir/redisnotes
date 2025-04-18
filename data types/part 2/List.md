@@ -38,10 +38,9 @@ lrange dept 1 -1
 lrange dept -3 -1
 //dept isimli listenin son 3 elemanını getirir.
 
-
-######################################################################################
-
 lrange dept 0 -1
+
+---
 
 <b><mark>lindex dept 0</mark></b><br>
 //dept isimli listenin 0.indeksindeki elemanı getirir.
@@ -86,8 +85,8 @@ lindex MSFT:close_prices -2
 
 lrange dept 0 -1
 
-linsert dept before "Admin" "Legal"
-//dept isimli listede Legal değerini Admin değerinden önce eklemek için kullanılır.
+<b><mark>linsert dept before "Admin" "Legal"</mark></b><br>
+//dept isimli listede Legal değerini Admin değerinden önce eklemek için kullanılır.<br>
 
 lrange dept 0 -1
 
@@ -142,13 +141,13 @@ ltrim num 2 -1
 //en son eklenen 2 elemanı siler
 lrange num 0 -1
 
-######################################################################################
+---
 
 rpush num 1 2 3 4 5
 
 lrange num 0 -1
 
-lset num 2 30
+<b><mark>lset num 2 30</mark></</b><br>
 //num isimli listede 2.indeksteki elemanın değerini 30 olarak değiştirir.
 
 lrange num 0 -1
