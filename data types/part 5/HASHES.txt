@@ -47,7 +47,7 @@ hmget user:101 fname lname
 hmget user:101 age fname
 
 
-hlen user:101
+<b><mark>hlen user:101</mark></b><br>
 //user:101 isimli hashin içindeki field sayısını verir.
 
 hgetall user:101
@@ -61,7 +61,7 @@ hmset user:101 f1 v1 f2 v2
 
 hgetall user:101
 
-hdel user:101 f2
+<b><mark>hdel user:101 f2</mark></b><br>
 //user:101 isimli hash içerisindeki f2 isimli fieldı ve değerini siler
 
 hgetall user:101
@@ -120,7 +120,7 @@ hgetall user:101
 
 #############################################################################################3
 
-hsetnx user:101 fname "John2"
+<b><mark>hsetnx user:101 fname "John2"</mark></b><br>
 //eğer user:101 isimli hash yapısında fname fieldı varsa eklemez. yoksa ekler.
 
 hsetnx user:101 f1 v1
@@ -138,7 +138,7 @@ hrandfield user:101
 hrandfield user:101 1
 //user:101 isimli hash içerisinden 1 tane field getirilir.
 
-hrandfield user:101 2
+<b><mark>hrandfield user:101 2</mark></b><br>
 //pozitif tam sayı verilirse getirilen alanlar mutlaka farklı olmalıdır
 
 hrandfield user:101 -2
@@ -165,25 +165,26 @@ GT
 LT
 
 --  HEXPIREAT
-HEXPIREAT user 42354353452 NX FIELDS 2 name city
+<b><mark>HEXPIREAT user 42354353452 NX FIELDS 2 name city</mark></b><br>
 
-HEXPIRETIME mykey FIELDS 2 field1 field2
+<b><mark>HEXPIRETIME mykey FIELDS 2 field1 field2</mark><br>
 HMSET myhash field1 "Hello" field2 "World"
-HPERSIST mykey FIELDS 1 field2
 
-HPEXPIRE mykey 2000 FIELDS 2 field1 field2
+<b><mark>HPERSIST mykey FIELDS 1 field2</mark></b><br>
+
+<b><mark>HPEXPIRE mykey 2000 FIELDS 2 field1 field2</mark></b><br>
 --ms cinsinden
 
-HPEXPIREAT mykey 1715704971000 FIELDS 2 field1 field2
-HPTTL mykey FIELDS 2 field1 field2
-HPEXPIRETIME mykey FIELDS 2 field1 field2
+<b><mark>HPEXPIREAT mykey 1715704971000 FIELDS 2 field1 field2</mark></b><br>
+<b><mark>HPTTL mykey FIELDS 2 field1 field2</mark></b><br>
+<b><mark>HPEXPIRETIME mykey FIELDS 2 field1 field2</mark></b><br>
 
 
 HSCAN myhash 0 NOVALUES
 
-HSTRLEN myhash f1
+<b><mark>HSTRLEN myhash f1</mark></b><br>
 
-HTTL mykey FIELDS 3 field1 field2 field3
+<b><mark>HTTL mykey FIELDS 3 field1 field2 field3</mark></b><br>
 
 
 Redis'teki scan komutları, verileri küçük 
