@@ -49,7 +49,7 @@ srem subjects bingo
 spop subjects
 //random eleman siler
 
-spop subjects 2 
+<b><mark>spop subjects 2 </mark></b><br>
 //set içinden 2 random eleman siler
 
 
@@ -81,7 +81,7 @@ smembers unique_lottery_num
 
 srandmember unique_lottery_num
 
-srandmember unique_lottery_num 2
+<b><mark>srandmember unique_lottery_num 2</mark></b><br>
 //unique_lottery isimli kümeden rastgele 2 eleman getirir.
 
 *********************************************************************
@@ -95,7 +95,7 @@ smembers num:even
 smove num:odd num:even 1
 smove num:odd num:even 3
 
-smove num:odd num:even 5
+<b><mark>smove num:odd num:even 5</mark></b><br>
 //num:odd kümesindeki elemanı num:even kümesine taşır
 //bu kullanımda 5 sayısı num:odd kümesi içindedir fakat bu komut ile num:even kümesine taşınmış oldu.
 
@@ -159,7 +159,7 @@ SDIFF key1 key2
 SINTER key1 key2
 --key1 ve key2 anahtarları üzerinde kesişen elemanları listeler.
 
-SINTERCARD 2 key1 key2
+<b><mark>SINTERCARD 2 key1 key2</mark></b><br>
 --2 anahtarın kesişen elemanlarının sayısını döndürür.
 
 SINTERSTORE key key1 key2
