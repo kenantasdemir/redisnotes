@@ -183,7 +183,7 @@ llen app:config:lst_supported_lang
 rpush mykey a b a a c d e f a
 lrange mykey 0 -1
 
-lpos mykey "a"
+<b><mark>lpos mykey "a"</mark></b><br>
 //listedeki "a" elemanın konumunu verir.
 
 lpos mykey "a" rank 1
@@ -193,8 +193,8 @@ lpos mykey "a" rank 3
 lpos mykey "a" rank -1
 //"a" öğesinin sonuncu sıradaki pozisyonunu bulmak için kullanılır. bulursa konumunu verir bulamazsa -1 döndürür.
 
-lpos mykey "a" count 0
-//aranan öğenin kaç adet bulunacağını sınırlandırır
+<b><mark>lpos mykey "a" count 0</mark></b></br>
+//aranan öğenin kaç adet bulunacağını sınırlandırır<br>
 //boş liste döner
 
 lpos mykey "a" count 1
@@ -226,7 +226,7 @@ lpos mykey "a" rank 1 count 0 maxlen 5000
 rpush mykey "one" "one" "two" "three" "one"
 lrange mykey 0 -1
 
-lrem mykey 0 "two"
+<b><mark>lrem mykey 0 "two"</mark></b><br>
 //0 indeksten tarayarak two elemanını bulur.
 //listedeki two elemanını siler.
 //silinen eleman sayısını döner
@@ -247,7 +247,7 @@ lrange mykey 0 -1
 rpush jobs:pending "job1" "job2" "job3"
 lrange jobs:pending 0 -1
 
-lmove jobs:pending jobs:completed left right
+<b><mark>lmove jobs:pending jobs:completed left right</mark></b><br>
 //jobs:pending listesinin ilk elemanını jobs:completed listesinin en başına taşır
 //jobs:completed listesinin en sondaki elemanını jobs:completed listesinin sonuna taşır
 
@@ -276,9 +276,10 @@ lmove orders:pending orders:completed right left
 lrange orders:pending 0 -1
 lrange orders:completed 0 -1
 
+---
 
 LPOP mylist
---soldan ilk elemanı silver
+//soldan ilk elemanı silver
 
 LPOP mylist 2
 Soldat iki elemanı siler
@@ -296,7 +297,7 @@ RPUSH mylist "one" "two" "three" "four" "five"
 RPOP mylist
 
 RPOP mylist 2
-RPOPLPUSH mylist myotherlist
+<b><mark>RPOPLPUSH mylist myotherlist</mark></b><br>
 //source listenin sağından bir eleman çıkarır ve destination listenin soluna ekler.
 
 
