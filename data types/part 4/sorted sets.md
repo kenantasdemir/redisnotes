@@ -84,16 +84,16 @@ zrevrank stocks:top AAPL
 //elemanları tersten sıralar.
 //AAPL en başta olduğu için bu elemanı en sona atar
 
-zunion 3 kume1 kume2 kume3
+<b><mark>zunion 3 kume1 kume2 kume3</mark></b><br>
 //3 kümeyi birleştirir.
 
-ZUNIONSTORE birlesik_kume 3 kume1 kume2 kume3
+<b><mark>ZUNIONSTORE birlesik_kume 3 kume1 kume2 kume3</mark></b><br>
 //3 kümeyi birlştirir ve birlesik_kume içine aktarır.
 
 ************************************************************************************************
 
 zrem kume1 armut muz
-//kume1 isimli kümei içerisine armut ve muz isimli elemanları ekler.
+//kume1 isimli kümei içerisine armut ve muz isimli elemanları siler.
 
 zinter 2 kume1 kume2
 //kume1 ve kume2 isimli 2 elemanın kesişimini verir.
@@ -106,7 +106,7 @@ zadd myset 2 val2
 zcard myset
 //myset isimli sıralı küme içindeki eleman sayısını verir.
 
-zcount mykume 1 15
+<b><mark>zcount mykume 1 15</mark></b><br>
 //mykume isimli sıralı küme içinde 1.indeks ile 15.indeks arasındaki verileri getirir. 
 
 zrandmember mykume
@@ -119,10 +119,10 @@ zrandmember mykume 5 withscores
 ************************************************************************************************
 
 zadd mykume 1 "one"
-zscore mykume "one"
+<b><mark>zscore mykume "one"</mark></b><br>
 //verilen elemanın skorunu verir.
 
-zmscore mykume "one" "two" "three"
+<b><mark>zmscore mykume "one" "two" "three"</mark></b><br>
 //verilen elemanların skor bilgisini verir.
 
 zintercard 2 mykume1 mykume2
