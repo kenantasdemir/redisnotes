@@ -1,4 +1,4 @@
-Redis Protocol
+# Redis Protocol
 Redis clients communicate with the Redis server using a protocol called RESP
 > Redis istemciler Redis server ile haberleşmek için RESP denen bir protokol kullanır.
 (REdis Serialization Protocol).
@@ -29,3 +29,4 @@ RESP'de, bazı verilerin türü ilk bayta bağlıdır.
 > Hatalar için yanıtın ilk baytı "-"
 > integers için yanıtın ilk baytı ":" şeklindedir.
 > Bulk stringler için yanıtın ilk baytı "$" dır.
+
