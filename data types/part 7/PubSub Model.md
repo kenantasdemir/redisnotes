@@ -13,8 +13,7 @@ unsubscribe ch1
 
 *************************************************************************
 
-patternd subscription
-
+# Patternd subscription
 
 publish news:tech "tech1"
 publish news:biz "biz1"
