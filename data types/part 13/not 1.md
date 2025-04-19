@@ -25,6 +25,7 @@ komut uygulamasına göre RESP türlerinden biriyle yanıt verir.
 Redis Protocol
 
 RESP'de, bazı verilerin türü ilk bayta bağlıdır. <br>
+
 > Basit stringler için yanıtın ilk baytı "+" dır.
 > Hatalar için yanıtın ilk baytı "-"
 > integers için yanıtın ilk baytı ":" şeklindedir.
