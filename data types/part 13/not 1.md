@@ -1,5 +1,5 @@
 # Redis Protocol
-Redis clients communicate with the Redis server using a protocol called RESP
+
 > Redis istemciler Redis server ile haberleşmek için RESP denen bir protokol kullanır.
 (REdis Serialization Protocol).
 > imlemente etmesi kolay
@@ -15,12 +15,13 @@ Redis Protocol-Özellikleri
   Request–Response Model
 
 Client
-komutları redis sunucusuna bulk stringlerden oluşan arrayler halinde gönderir.
+<b><mark>komutları redis sunucusuna bulk stringlerden oluşan arrayler halinde gönderir.</mark></b><br>
 
 Server
-komut uygulamasına göre RESP türlerinden biriyle yanıt verir.
+<b><mark>komut uygulamasına göre RESP türlerinden biriyle yanıt verir.</mark></b><br>
 
 
+---
 
 Redis Protocol
 
