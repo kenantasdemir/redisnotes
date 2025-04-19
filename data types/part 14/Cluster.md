@@ -15,15 +15,15 @@ Bu, hello anahtarının kaç kez referans alındığını ve kaç bağlantı nok
 Bu komut, Redis içindeki bellek yönetimini anlamak ve performansı iyileştirmek için kullanışlıdır. 
 Özellikle, çok fazla referans sayısına sahip anahtarları tespit etmek ve gereksiz bellek kullanımını önlemek için kullanışlıdır.
 
-object refcount hello1
+<b><mark>object refcount hello1</mark></b><br>
 
 object encoding hello
 //hello adlı anahtarın tuttuğu değerin türünü döner.
 //bu örnekte hello anahtarı 1 değerini tutar. yani int
 
-object encoding hello1
+<b><mark>object encoding hello1</mark></b><br>
 
-object idletime hello
+<b><mark>object idletime hello</mark></b><br>
 belirtilen anahtarın son kullanımından itibaren ne kadar süredir kullanılmadığını döndürür.
 
 Redis, bellek yönetimi için bir tembellik (idling) mekanizması kullanır. Bir anahtarın son kullanımından itibaren belli bir süre geçtikten sonra, 
@@ -50,9 +50,9 @@ set name "Joe"
 
 get name
 
-dump name
+<b><mark>dump name</mark></b><br>
 
-restore name 0 <paste code for key: name >
+<b><mark>restore name 0 <paste code for key: name ></mark></b><br>
 
 get name
 
@@ -74,7 +74,7 @@ ls
 
 ls -lrta
 
-tail -10 .rediscli_history
+<b><mark>tail -10 .rediscli_history</mark></b><br>
 
 
 
@@ -277,17 +277,17 @@ redis-cli -u $URL
 
 creating replicas
 
-redis-cli --cluster create 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 
-127.0.0.1:7004 127.0.0.1:7005 127.0.0.1:7006 --cluster-replicas 1
+<b><mark>redis-cli --cluster create 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 
+127.0.0.1:7004 127.0.0.1:7005 127.0.0.1:7006 --cluster-replicas 1</mark></b><br>
 
 #################################################################################################################
 
 
-redis-cli --cluster check 127.0.0.1:7001
+<b><mark>redis-cli --cluster check 127.0.0.1:7001</mark></b><br>
 
-redis-cli -p 7001 cluster
+<b><mark>redis-cli -p 7001 cluster</mark></b><br>
 
-redis-cli -p 7001 cluster nodes
+<b><mark>redis-cli -p 7001 cluster nodes</mark></b><br>
 
 exists fname lname
 
@@ -319,7 +319,7 @@ set 1 hello px 1000000
 
 pttl 1
 
-pexpire 1 100
+<b><mark>pexpire 1 100</mark></b><br>
 
 pttl 1
 
@@ -333,7 +333,7 @@ get k1
 
 get k2
 
-renamenx k1 k2
+<b><mark>renamenx k1 k2</mark></b><br>
 
 get k1
 
@@ -356,7 +356,7 @@ set k1 v1
 
 set k2 v2
 
-unlink k1 k2
+<b><mark>unlink k1 k2</mark></b><br>
 
 
 
