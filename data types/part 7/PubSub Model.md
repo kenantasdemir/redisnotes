@@ -22,7 +22,7 @@ subscribe news:tech news:biz
 
 -----------------------------------
 
-psubscribe news:*
+<b><mark>psubscribe news:*</mark></b><br>
 
 publish news:biz "biz1"
 
@@ -39,7 +39,7 @@ publish news1 "news1"
 
 subscribe news1
 
-pubsub channels *
+<b><mark>pubsub channels *</mark></b><br>
 
 publish news1 "news2"
 
@@ -53,7 +53,7 @@ subscribe topstocks
 
 publish topstocks "top1"
 
-pubsub channels news*
+<b><mark>pubsub channels news*</mark></b><br>
 pubsub channels top*
 
 
