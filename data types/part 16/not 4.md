@@ -1,29 +1,29 @@
 ps -ef|grep redis
 redis-cli -c -p 7002
-cluster nodes
-cluster slots
+<b><mark>CLUSTER NODES</mark></b><br>
+<b><mark>CLUSTER SLOTS</mark></b><br>
 //"cluster slots" komutu, Redis kümesindeki tüm düğümler arasında anahtar aralıklarının nasıl dağıtıldığını ve 
 //anahtar alanlarının hangi düğümlere atanacağını gösteren bir anahtar dağıtım haritası (key distribution map) oluşturmak için kullanılır.
 
 ##############################################################################
 
-redis-cli -c -p 7002
+redis-cli -c -p 7002 <br>
 
-cluster help
+<b><mark>CLUSTER HELP</mark></b><br>
 //cluster modu hakkında bilgi verir.
 //cluster üzerinden kullanılabilecek komutları ve bunların açıklamasını listeler.
 
-cluster info
+<b><mark>CLUSTER INFO</mark></b><br>
 //cluster hakkında bilgiler verir.
 
-cluster myid
+<b><mark>CLUSTER MYID</mark></b><br>
 //"cluster myid" komutu, Redis kümesi düğümünün benzersiz kimliğini (ID) döndürür. 
 //Bu kimlik, düğümün bir küme üyesi olarak tanınmasını sağlar ve diğer düğümler tarafından tanınmasına yardımcı olur.
 
-cluster nodes
-role
-info
-cluster replicas clusterid
+<b><mark>CLUSTER NODES</mark></b><br>
+role <br>
+info <br>
+<b><mark>CLUSTER REPLICAS clusterid</mark></b><br>
 //clusterid ile belirtilen clusterın replikalarını listeler.
 
 ##############################################################################
