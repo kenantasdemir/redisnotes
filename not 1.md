@@ -4,7 +4,7 @@ redis-cli
 shutdown nosave
 
 
-shutdown nosave now
+<b><mark>shutdown nosave now</mark></b><br>
 //bu komut çalıştırıldığında servera bağlantıyı hemen kapatması için istek gönderilir.
 
 set key1 value1 ex 120 nx GET
@@ -16,14 +16,14 @@ myKey anahtarına 100 milisaniye (0.1 saniye) sonra sona ermesi için bir süre 
 
 
 
-info
-info memory
-info stats
-info replication
-info cpu
-info cluster
+info<br>
+info memory<br>
+info stats<br>
+info replication<br>
+<b><mark>info cpu</mark></b><br>
+info cluster<br>
 
-info keyspace
+<b><mark>info keyspace</mark></b><br>
 
 ping
 ping "hello"
@@ -42,7 +42,7 @@ set key1 value1
 set key2 value2
 set key3 value3
 
-randomkey
+<b><mark>randomkey</mark></b><br>
 //rastgele olarak bir key döner.
 
 del key1 key2 key3
