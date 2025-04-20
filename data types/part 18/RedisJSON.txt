@@ -69,8 +69,6 @@ redis-cli --raw
 json.get myobje
 
 json.type myobje
-
-json.type . myobje
 //aynı dizinde bulunan myobje adlı objenin türünü döndürür.
 
 
@@ -243,66 +241,4 @@ json.debug memory arr
 
 json.set arr . '["","",""]'
 json.debug memory arr
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
