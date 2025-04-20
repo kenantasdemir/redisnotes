@@ -23,7 +23,7 @@ set name2 "Doe"
 get name1
 get name2
 
-rename name1 fname
+<b><mark>rename name1 fname</mark></b><br>
 get name1
 get fname
 
@@ -45,7 +45,7 @@ set k2 v2
 get k1
 get k2
 
-renamenx k1 k2
+<b><mark>renamenx k1 k2</mark></b><br>
 
 get k1
 get k2
