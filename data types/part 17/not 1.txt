@@ -34,6 +34,8 @@ ft.search idx:movie "war" RETURN 3 movie_name release_year category
 ft.search idx:movie "@movie_name:war" RETURN 3 movie_name release_year category
 //@movie_name bilgisi war olan kaıtların movie_name release_year category anahtarlarına karşılkık gelen değerleri getirir.
 
+ft.search idx:movie "@movie_name:war -jedi" return 1 movie_name
+
 ft.search idx:movie "@category:{Thriller}" return 2 movie_name release_year
 //idx:movie indeksi içinde @category bilgisi "Thriller" olan belgelerin movie_name release_year anahtarlarına karşılık gelen değerleri getirir. 
 
