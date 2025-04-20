@@ -64,15 +64,19 @@ redis-cli -c -p 7002
 info
 quit
 
-redis-cli -p 7002 cluster nodes
+redis-cli -p 7002 cluster nodes <br>
 
 
 
+<b><mark>
+Redis Cluster'da keyslot kavramı, bir anahtarın hangi slot'ta yer alacağını belirler. </mark></b><br>
+<b><mark>
+Redis Cluster, verilerin daha küçük parçalara (slot'lara) 
+bölünmesini sağlar ve her bir slot, belirli bir küme düğümüne atanır. </mark></b><br>
 
-Redis Cluster'da keyslot kavramı, bir anahtarın hangi slot'ta yer alacağını 
-belirler. Redis Cluster, verilerin daha küçük parçalara (slot'lara) 
-bölünmesini sağlar ve her bir slot, belirli bir küme düğümüne atanır. 
-Bu, Redis Cluster'ın yatay olarak ölçeklenmesini mümkün kılar.
+<b><mark>Bu, Redis Cluster'ın yatay olarak ölçeklenmesini mümkün kılar.
+</mark></b><br>
+
 
 CLUSTER KEYSLOT keyname
 keyname: Slotunu öğrenmek istediğiniz anahtarın adı.
